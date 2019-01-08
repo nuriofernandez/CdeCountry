@@ -1,0 +1,35 @@
+
+# Setup CORS
+SetEnvIf Origin ^(https?://.+\.cdecountry\.es(?::\d{1,5})?)$   CORS_ALLOW_ORIGIN=$1
+Header append Access-Control-Allow-Origin  %{CORS_ALLOW_ORIGIN}e   env=CORS_ALLOW_ORIGIN
+Header merge  Vary "Origin"
+
+<IfModule mod_rewrite.c>
+
+    RewriteEngine On
+    RewriteBase /
+
+    # Static sites
+    RewriteRule ^mapa$ index.php?web=mapa [NC,L]
+    RewriteRule ^tv$ index.php?web=tv [NC,L]
+
+    # Press sites
+    RewriteRule ^press/post-editor index.php?web=post-editor [QSA,NC,L]
+    RewriteRule ^press/([^/]+)/([^/]+)$  /index.php?web=post&entryid=$1 [NC,L]
+    RewriteRule ^press/(.*)$  /index.php?web=press&pageid=$1 [NC,L]
+    RewriteRule ^press  /index.php?web=press [NC,L]
+
+    # Account sites
+    RewriteRule ^logout$ index.php?web=logout [NC,L]
+    RewriteRule ^login$ index.php?web=login [NC,L]
+    RewriteRule ^profile$ index.php?web=profile [NC,L]
+    RewriteRule ^cuenta/restablecer$ index.php?web=password-request [NC,L]
+    RewriteRule ^ciudadania$ index.php?web=ciudadania-request [NC,L]
+
+    # Untaged sites
+
+</IfModule>
+
+
+
+ErrorDocument 404 /index.php?web=404

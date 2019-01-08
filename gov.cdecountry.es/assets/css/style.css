@@ -1,0 +1,247 @@
+
+/* Blocks */
+
+html {
+  position: relative;
+  min-height: 100vh;
+  min-width: 920px;
+}
+
+body {
+  margin-bottom: 111px;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #f9f9f9;
+}
+
+main {
+  margin-top: 35px;
+  margin-bottom: 35px;
+}
+
+nav.navbar {
+  box-shadow: 3px 2px 11px #333;
+  font-size: 1.2rem;
+}
+
+nav.navbar,
+footer,
+body {
+  width: 100%;
+}
+
+.container {
+  min-width: 770px;
+}
+
+@media (max-width:1025px) {
+  .container {
+    min-width: 96%;
+  }
+}
+
+.footer>.container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.footer {
+  box-shadow: 0px -2px 11px #333;
+  position: absolute;
+  bottom: 0;
+  margin-top: 16px;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  background-color: #343a40;
+}
+
+.card-block {
+  margin: 20px;
+}
+
+/* Colors */
+
+.color-semi-red {
+  color: #ff4949;
+}
+
+/* Link correction */
+
+a.link-no {
+  color: #9a9a9a;
+}
+
+a.link-no:hover {
+  text-decoration: none;
+  color: rgba(255, 255, 255, .75);
+}
+
+a {
+  color: #343a40;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+/* Functions */
+
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Sizes */
+
+.max-width {
+  max-width: 100%;
+}
+
+.font-500 {
+  font-weight: 500;
+}
+
+
+/* Grids */
+
+tbody.align>tr>td {
+  vertical-align: middle;
+  text-align: center;
+}
+
+.server-info-box {
+  margin: 10px;
+}
+
+.text-title {
+  color: #000;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 20px;
+}
+
+code {
+  font-size: 80%;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+/* Messages and colors */
+
+.vote-data-requiered {
+  color: #dc3545;
+  padding-left: 5px;
+}
+
+.vote-data-optional {
+  color: #28a745;
+  padding-left: 5px;
+}
+
+.footer-text {
+  color: #ccc;
+}
+
+/* TV Area */
+
+#tvframe {
+  z-index: 99999;
+  border: 0px;
+  box-shadow: 1px 1px 8px #333;
+}
+
+iframe.fullScreen {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+iframe.nofullScreen {
+  width: 100%;
+  height: 624px;
+}
+
+/* Election's area */
+
+.flagCard .card-body {
+  border-top: whitesmoke 1px solid;
+  box-shadow: inset 0px 0.5em 5em whitesmoke;
+}
+
+@media (min-width:1025px) {
+  .flagCard {
+    min-width: 25% !important;
+    max-width: 20em;
+    margin-bottom: 1.5em !important;
+  }
+  #flags-cards {
+    padding-left: 3%;
+  }
+}
+
+@media (max-width:1025px) {
+  .flagCard {
+    font-size: 4vw;
+    min-width: 96%;
+  }
+  .flagCard h5 {
+    font-size: 5vw;
+  }
+  .flagCard input[type=radio] {
+    transform: scale(1.5) !important;
+  }
+  main {
+    font-size: 4vw;
+  }
+  main button {
+    font-size: 4vw !important;
+  }
+  main .title {
+    font-size: 5vw;
+    white-space: normal;
+    overflow-wrap: break-word;
+  }
+}
+
+.card-size {
+  width: 320px;
+  height: 210px;
+}
+
+.election-description-area{
+  min-height: 200px;
+  overflow-y: auto;
+  max-height: 200px;
+}
+
+/* Profile area */
+
+.profile-picture{
+  height: 285px;
+  width: 285px;
+}
+
+/* Unused area */
+
+.unused-class {
+  padding: 2rem 1rem;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  text-shadow: 1px 1px 2px #333;
+  color: #fff;
+  margin-bottom: 16px;
+  box-shadow: 0px 2px 11px #333;
+  background-size: cover;
+}
+
+.unused-class>h1 {
+  text-transform: uppercase;
+}

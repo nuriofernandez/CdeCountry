@@ -1,0 +1,23 @@
+
+# Setup CORS
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Methods "POST, GET, OPTIONS"
+    Header set Access-Control-Allow-Headers "X-PINGOTHER, Content-Type"
+</IfModule>
+
+<IfModule mod_rewrite.c>
+
+    RewriteEngine On
+    RewriteBase /
+
+    # Profile lookup sites
+    RewriteRule ^get/profile/(.*)$ src/profile-lookup.php?id=$1 [NC,L]
+    RewriteRule ^session/validate$ src/create-session.php [NC,L]
+    
+
+</IfModule>
+
+
+
+ErrorDocument 404 /index.php?web=404
