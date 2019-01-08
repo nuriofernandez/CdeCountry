@@ -30,7 +30,7 @@ if($prepare->rowCount() == 0) die( json_encode( array( "error" => "authentificat
 $userdata = $prepare->fetch(PDO::FETCH_ASSOC);
 
 // Create user password hash 
-$hashedCredential = hash('sha256', $userdata['pass_salt'] . hash('sha256', $request['password'] . md5($salt)) . $salt);
+$hashedCredential = hash('sha256', $userdata['pass_salt'] . hash('sha256', $request['password'] . md5($userdata['pass_salt'])) . $userdata['pass_salt']);
 
 // Validate user password hashes
 if($hashedCredential != $userdata['password']) die( json_encode( array( "error" => "authentification_error", "message" => "La contraseña no es valida." ) ) );
