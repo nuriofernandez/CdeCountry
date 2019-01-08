@@ -205,9 +205,6 @@ class CSession {
         // Create proccess
         return new Promise((resolve, stop) => {
 
-            // Stop if sessionId isn't set
-            if (!this.sessionId) return false;
-
             // Call the api
             let api = ApiCall.postCall(`https://api.cdecountry.es/session/create`, {identity, password});
             api.then((json) => {
