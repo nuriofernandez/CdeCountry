@@ -13,7 +13,8 @@
 
     # Profile lookup sites
     RewriteRule ^get/profile/(.*)$ src/profile-lookup.php?id=$1 [NC,L]
-    RewriteRule ^session/validate$ src/create-session.php [NC,L]
+    RewriteRule ^session/validate$ src/validate-session.php [NC,L]
+    RewriteRule ^session/create$ src/create-session.php [NC,L]
     
 
 </IfModule>
