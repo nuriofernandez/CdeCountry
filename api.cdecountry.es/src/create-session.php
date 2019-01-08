@@ -43,7 +43,7 @@ $session['token'] = md5($ipAddress + microtime(true));
 
 // Do an a sql call inserting the session data
 $prepare = $nlsql->getPDO()->prepare("INSERT INTO `user_sessions`(`session_token`, `session_expire`, `session_cdec`, `ipAddress`) VALUES (:token, :expire, :cdec, :ip)");
-$prepare->bindParam(":token", $session['token'], PDO::PARAM_STR, 16);
+$prepare->bindParam(":token", $session['token'], PDO::PARAM_STR, 32);
 $prepare->bindParam(":expire", $session['expire'], PDO::PARAM_STR, 21);
 $prepare->bindParam(":cdec", $session['identity'], PDO::PARAM_STR, 11);
 $prepare->bindParam(":ip", $session['ip'], PDO::PARAM_STR, 15);
