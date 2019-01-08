@@ -12,7 +12,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/src/database.php';
 header('Content-Type: application/json');
 
 // Parse JSON request
-if(!(isset($_POST['json'])) die( json_encode( array( "error" => "invalid_request_type") ) );
+if(!(isset($_POST['json']))) die( json_encode( array( "error" => "invalid_request_type") ) );
 $request = json_decode( $_POST['json'] , true );
 
 // Request params validation
@@ -36,6 +36,7 @@ $hashedCredential = hash('sha256', $userdata['pass_salt'] . hash('sha256', $requ
 if($hashedCredential != $userdata['password']) die( json_encode( array( "error" => "authentification_error", "message" => "La contraseña no es valida." ) ) );
 
 // Create new session variables
+$session = [];
 $session['expire'] = microtime(true) + (1000*60*60*24);
 $session['identity'] = $userdata['id'];
 $session['ip'] = $_SERVER['REMOTE_ADDR'];
