@@ -208,7 +208,8 @@ class CSession {
             // Call the api
             let api = ApiCall.postCall(`https://api.cdecountry.es/session/create`, {identity, password});
             api.then((json) => {
-                _this.sessionValid = json.isValid;
+                _this.sessionId = json.token;
+                console.log(_this.sessionId);
                 resolve(json);
             });
 
