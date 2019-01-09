@@ -176,6 +176,7 @@ class CSession {
 
         // Store this on a _this
         var _this = this;
+        var _sessionId = _this.sessionId;
 
         // Validate proccess
         return new Promise((resolve, stop) => {
@@ -184,7 +185,7 @@ class CSession {
             if (!this.sessionId) return false;
 
             // Call the api
-            let api = ApiCall.postCall(`https://api.cdecountry.es/session/validate`, _this.sessionId);
+            let api = ApiCall.postCall(`https://api.cdecountry.es/session/validate`, {_sessionId});
             api.then((json) => {
                 if(json.error == null) {
                     _this.sessionValid = true;
