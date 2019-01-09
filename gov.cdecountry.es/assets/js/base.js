@@ -184,9 +184,14 @@ class CSession {
             if (!this.sessionId) return false;
 
             // Call the api
-            let api = ApiCall.call(`https://api.cdecountry.es/session/validate/${this.sessionId}`);
+            let api = ApiCall.postCall(`https://api.cdecountry.es/session/validate`, _this.sessionId);
             api.then((json) => {
-                _this.sessionValid = json.isValid;
+                if(json.error == null) {
+                    _this.sessionValid = true;
+                    console.log("Your session has been validated.")
+                }
+                _this.sessionValid = false;
+                console.log("Your session is invalid.")
                 resolve(json);
             });
 
