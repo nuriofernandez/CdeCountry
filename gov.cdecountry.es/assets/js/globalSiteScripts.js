@@ -32,8 +32,8 @@ document.querySelectorAll("[jsevent='form-login'").forEach( (element) => {
         e.preventDefault();
         
         // Obtain login data 
-        let userIdentity = document.getElementById("user-id");
-        let userPassword = document.getElementById("user-pass");
+        let userIdentity = document.getElementById("user-id").value;
+        let userPassword = document.getElementById("user-pass").value;
         let textMessage = document.getElementById("invalid-login-text");
 
         // Try to create session
