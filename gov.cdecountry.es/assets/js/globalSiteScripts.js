@@ -17,7 +17,7 @@ window.addEventListener("load", () => {
 
         if (session.isActive()) {
             /* Tab rename */
-            document.getElementById(`${activeTab}-title`).innerHTML = "Cuenta";
+            document.getElementById(`tab-login-title`).innerHTML = "Cuenta";
             
         }
 
