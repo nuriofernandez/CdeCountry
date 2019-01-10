@@ -234,7 +234,7 @@ class CSession {
 
 
     isActive() {
-        return this.sessionValid;
+        return this.sessionValid == true;
     }
 
     /**

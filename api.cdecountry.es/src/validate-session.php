@@ -33,7 +33,7 @@ $session = $prepare->fetch(PDO::FETCH_ASSOC);
 if( $session['session_expire'] <= microtime(true) ) die( json_encode( array( "error" => "invalid_session", "message" => "La session ha expirado." ) ) );
 
 // Validate session ip
-if($_SERVER['REMOTE_ADDR']] != $session['ipAddress']) die( json_encode( array( "error" => "invalid_session", "message" => "La ip de la session no coincide." ) ) );
+if($_SERVER['REMOTE_ADDR'] != $session['ipAddress']) die( json_encode( array( "error" => "invalid_session", "message" => "La ip de la session no coincide." ) ) );
 
 // Print the response
 print( json_encode( { "token" => $session['session_token'], "expire" => $session['session_expire'], "identity" => $session['session_cdec'] } ) );
