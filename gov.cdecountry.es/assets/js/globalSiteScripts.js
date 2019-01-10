@@ -7,7 +7,7 @@
 const session = new CSession();
 
 // Register listeners
-window.addEventListener("load", () => {
+window.addEventListener("DOMContentLoaded", () => {
 
     /* Update active navbar tab */
     let activeTab = document.getElementById("active-tab").value;
