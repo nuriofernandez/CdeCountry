@@ -26,7 +26,7 @@ window.addEventListener("load", () => {
 });
 
 document.querySelectorAll("[jsevent='form-login'").forEach( (element) => {
-    element.addEventListener('submit', function(e){
+    element.addEventListener('submit', (e) => {
         
         // Prevent submit
         e.preventDefault();
@@ -46,7 +46,7 @@ document.querySelectorAll("[jsevent='form-login'").forEach( (element) => {
 
             textMessage.classList.remove("d-none");
             textMessage.innerHTML = json.message;
-            
+
         });
     });    
 });

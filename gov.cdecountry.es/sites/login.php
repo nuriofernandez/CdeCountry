@@ -9,7 +9,7 @@ $site['active-tab'] = "tab-login";
         <div class="col-lg-8 bg-white rounded box-shadow m-3 p-3">
 
             <h1 class="noselect text-center">¿Aún no eres CdeCiudadano?</h1>
-            
+
             <a href="ciudadania">
                 <div class="m-4 p-4 bg-white rounded">
                     <h2 class="noselect text-center">Solicitar CdeCiudadania</h2>
@@ -26,7 +26,7 @@ $site['active-tab'] = "tab-login";
             <h3 class="mb-0">Inicio de sesión</h3>
             <small id="invalid-login-text" class="text-danger d-none">Email, ID o contraseña incorrecta.</small>
 
-            <form jsevent="btn-login" class="mb-4" action="#" method="POST" >
+            <form jsevent="form-login" class="mb-4" action="#" method="POST" >
                 <div class="form-group mt-3">
                     <label for="user-id">Email o ID</label>
                     <input type="email" class="form-control" name="user-id" id="user-id" aria-describedby="emailHelp">
