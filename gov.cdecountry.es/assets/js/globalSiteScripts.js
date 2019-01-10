@@ -19,6 +19,9 @@ window.addEventListener("DOMContentLoaded", () => {
             /* Tab rename */
             document.getElementById(`tab-login-title`).innerHTML = "Cuenta";
             
+            document.querySelectorAll("[href='https://new.cdecountry.es/login'").forEach( (element) => {
+                element.href="https://new.cdecountry.es/profile";
+            });
         }
 
     });
