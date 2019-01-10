@@ -40,6 +40,8 @@ document.querySelectorAll("[jsevent='form-login'").forEach( (element) => {
         session.create(userIdentity, userPassword).then( (json) => {
 
             if(session.isActive()){
+                
+                // TODO => Don't redirect, just rewritte the dom.
                 window.location.href="https://new.cdecountry.es/profile";
                 return;
             }

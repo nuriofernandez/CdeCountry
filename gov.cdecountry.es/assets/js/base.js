@@ -327,8 +327,11 @@ class CSession {
             let api = ApiCall.postCall(`https://api.cdecountry.es/session/create`, {identity, password});
             api.then((json) => {
                 if( json.error == null ) {
+                    
+                    // Build the session
                     _this.sessionId = json.token;
                     _this.profile = new Profile(json.identity);
+                    _this.sessionValid = true;
                     Cookies.set("session-id", json.token);
                     resolve(json);
                     return;
