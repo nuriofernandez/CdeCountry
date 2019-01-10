@@ -294,7 +294,7 @@ class CSession {
             if (!this.sessionId) return false;
 
             // Call the api
-            let api = ApiCall.postCall(`https://api.cdecountry.es/session/validate`, {_sessionId});
+            let api = ApiCall.postCall(`https://api.cdecountry.es/session/validate`, {"token" : _sessionId});
             api.then((json) => {
                 if(json.error == null) {
                     _this.sessionValid = true;
