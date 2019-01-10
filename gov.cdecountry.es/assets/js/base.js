@@ -1,13 +1,25 @@
-/* Google Analitys JS */
+/*** ///////////////////////////////////////////////////////////////// ***/
+/*************************** 3th part separator **************************/
+/*** ///////////////////////////////////////////////////////////////// ***/
+
+// Google Analitys JS
 window.dataLayer = window.dataLayer || [];
 function gtag() { dataLayer.push(arguments); }
 gtag('js', new Date());
 gtag('config', 'UA-89267571-4');
 
-/* Site JS */
 
+/*** ///////////////////////////////////////////////////////////////// ***/
+/************************** Code start separator *************************/
+/*** ///////////////////////////////////////////////////////////////// ***/
+
+// Global constants
 const currentTime = new Date().getUTCMilliseconds();
 
+
+/*** ///////////////////////////////////////////////////////////////// ***/
+/**************************** Class separator ****************************/
+/*** ///////////////////////////////////////////////////////////////// ***/
 
 /**
  *  Api caller class 
@@ -32,15 +44,15 @@ class ApiCall {
                 // Add response to the cache
                 let cacheId = JSON.stringify({"url":url});
                 GCache.addToCache(cacheId, json);
-                
+
                 // Resolve the promise
                 resolve(json);
 
             }).catch((message) => {
-                
+
                 // On error display message on console.
                 console.log("[API] Error on fetch. "+message);
-
+                
             });
 
         });
@@ -115,6 +127,10 @@ class ApiCall {
 
 }
 
+/*** ///////////////////////////////////////////////////////////////// ***/
+/**************************** Class separator ****************************/
+/*** ///////////////////////////////////////////////////////////////// ***/
+
 /**
  * GCache => Data storage manager
  */
@@ -150,6 +166,9 @@ class GCache {
 }
 GCache.cache = {}; // Define cache variable
 
+/*** ///////////////////////////////////////////////////////////////// ***/
+/**************************** Class separator ****************************/
+/*** ///////////////////////////////////////////////////////////////// ***/
 
 /**
  * CdeCountry Profile manager
@@ -239,6 +258,10 @@ class Profile {
     }
 
 }
+
+/*** ///////////////////////////////////////////////////////////////// ***/
+/**************************** Class separator ****************************/
+/*** ///////////////////////////////////////////////////////////////// ***/
 
 /**
  * CdeCountry session manager.
@@ -330,29 +353,3 @@ class CSession {
         return this.profile;
     }
 }
-
-
-/*************************** Global site script **************************/
-
-// Register constants
-const session = new CSession();
-
-// Register listeners
-window.addEventListener("load", () => {
-
-    /* Update active navbar tab */
-    let activeTab = document.getElementById("active-tab").value;
-    if (!(activeTab == null || activeTab == "" || activeTab == "none")) document.getElementById(activeTab).classList.add("active");
-
-    session.validate().then((json) => {
-
-        if (session.isActive()) {
-            /* Tab rename */
-            if (activeTab == "tab-login") {
-                document.getElementById(`${activeTab}-title`).innerHTML = "Cuenta";
-            }
-        }
-
-    });
-
-});

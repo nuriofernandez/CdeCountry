@@ -82,6 +82,7 @@ ob_end_clean();
 
 		<!-- Site JS -->
 		<script type="text/javascript" src="https://new.cdecountry.es/assets/js/base.js"></script>
+		<script type="text/javascript" src="https://new.cdecountry.es/assets/js/globalSiteScripts.js"></script>
 
 		<!-- Google Analitys Include !-->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-89267571-4"></script>
