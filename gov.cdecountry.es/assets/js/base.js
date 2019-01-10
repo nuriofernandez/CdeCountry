@@ -189,7 +189,10 @@ class CSession {
             api.then((json) => {
                 if(json.error == null) {
                     _this.sessionValid = true;
-                    console.log("Your session has been validated.")
+                    console.log("Your session has been validated.");
+                    this.profile = new Profile(json.identity);
+                    resolve(json);
+                    return;
                 }
                 _this.sessionValid = false;
                 console.log("Your session is invalid.")
@@ -217,6 +220,7 @@ class CSession {
                 if( json.error == null ) {
                     _this.sessionId = json.token;
                     console.log(_this.sessionId);
+                    this.profile = new Profile(json.identity);
                     resolve(json);
                     return;
                 }
@@ -230,14 +234,14 @@ class CSession {
 
 
     isActive() {
-
+        return this.sessionValid;
     }
 
     /**
      * Get the [class Profile] of the session
      */
     getProfile(){
-
+        return this.profile;
     }
 }
 
