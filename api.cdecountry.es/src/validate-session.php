@@ -36,6 +36,6 @@ if( $session['session_expire'] <= microtime(true) ) die( json_encode( array( "er
 if($_SERVER['REMOTE_ADDR'] != $session['ipAddress']) die( json_encode( array( "error" => "invalid_session", "message" => "La ip de la session no coincide." ) ) );
 
 // Print the response
-print( json_encode( { "token" => $session['session_token'], "expire" => $session['session_expire'], "identity" => $session['session_cdec'] } ) );
+print( json_encode( array( "token" => $session['session_token'], "expire" => $session['session_expire'], "identity" => $session['session_cdec'] ) ) );
 
 ?>
