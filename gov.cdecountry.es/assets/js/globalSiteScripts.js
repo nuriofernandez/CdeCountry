@@ -25,13 +25,20 @@ window.addEventListener("load", () => {
 
 });
 
-document.querySelectorAll("[jsevent='btn-login'").forEach( (element) => {
-    element.addEventListener('click', (e) => {
-        let userIdentity = document.getElementById("user_id");
-        let userPassword = document.getElementById("user_pass");
+document.querySelectorAll("[jsevent='form-login'").forEach( (element) => {
+    element.addEventListener('submit', function(e){
+        
+        // Prevent submit
+        e.preventDefault();
+        
+        // Obtain login data 
+        let userIdentity = document.getElementById("user-id");
+        let userPassword = document.getElementById("user-pass");
         let textMessage = document.getElementById("invalid-login-text");
 
+        // Try to create session
         session.create(userIdentity, userPassword).then( (json) => {
+
             if(session.isActive()){
                 window.location.href="https://new.cdecountry.es/profile";
                 return;
@@ -39,6 +46,7 @@ document.querySelectorAll("[jsevent='btn-login'").forEach( (element) => {
 
             textMessage.classList.remove("d-none");
             textMessage.innerHTML = json.message;
+            
         });
     });    
 });
