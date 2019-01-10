@@ -245,6 +245,9 @@ class CSession {
     }
 }
 
+/**
+ * CdeCountry Profile manager
+ */
 class Profile {
 
     /**
@@ -331,6 +334,11 @@ class Profile {
 
 }
 
+/*************************** Global site script **************************/
+
+// Register constants
+const session = new CSession();
+
 // Register listeners
 window.addEventListener("load", () => {
 
@@ -338,7 +346,6 @@ window.addEventListener("load", () => {
     let activeTab = document.getElementById("active-tab").value;
     if (!(activeTab == null || activeTab == "" || activeTab == "none")) document.getElementById(activeTab).classList.add("active");
 
-    const session = new CSession();
     session.validate().then((json) => {
 
         if (session.isActive()) {
