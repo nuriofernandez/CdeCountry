@@ -7,7 +7,7 @@ $site['active-tab'] = "tab-login";
 
     <div id="profile-logout-bar" class="d-flex align-items-center p-1 mt-1 mb-1 text-white-50 bg-white rounded box-shadow">
         <div class="lh-100 ml-1 p-2">
-            <h4 class="mb-0 lh-100">Nombre Apellido</h4>
+            <h4 textreplaceinner="session-name" class="mb-0 lh-100">Nombre Apellido</h4>
         </div>
         <div class="lh-100 mr-0 ml-auto p-2">
             <a class="btn btn-primary my-2 my-sm-0" href="https://new.cdecountry.es/logout" role="button">Cerrar sesión</a>
@@ -18,7 +18,7 @@ $site['active-tab'] = "tab-login";
         <div class="login col-lg bg-white rounded box-shadow m-3 py-3">
             <a id="link-twitter" href="#" target="_blank"><img id="profile-picture" src="https://avatars.io/static/default_128.jpg" class="profile-picture max-width rounded mr-3 mb-3 float-left" alt="Foto de perfil"></a>
             <div class="mt-3 pl-1">
-                <h3 id="name" class="display-5">Nombre Apellido</h3>
+                <h3 textreplaceinner="profile-name" id="name" class="display-5">Nombre Apellido</h3>
                 <p id="carnet-id">1</p>
             </div>
         </div>

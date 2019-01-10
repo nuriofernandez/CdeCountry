@@ -13,6 +13,7 @@ window.addEventListener("DOMContentLoaded", () => {
     let activeTab = document.getElementById("active-tab").value;
     if (!(activeTab == null || activeTab == "" || activeTab == "none")) document.getElementById(activeTab).classList.add("active");
 
+    /** Validate session */
     session.validate().then((json) => {
 
         if (session.isActive()) {
@@ -55,3 +56,14 @@ document.querySelectorAll("[jsevent='form-login'").forEach( (element) => {
         });
     });    
 });
+
+
+function translateVars(){
+    document.querySelectorAll("[textreplaceinner='session-name'").forEach( (element) => {
+        element.innerHTML = session.getProfile().getName();
+    });
+
+    document.querySelectorAll("[textreplaceinner='profile-name'").forEach( (element) => {
+        element.innerHTML = session.getProfile().getName();
+    });
+}
