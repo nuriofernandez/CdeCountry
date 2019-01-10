@@ -332,44 +332,22 @@ class Profile {
 }
 
 // Register listeners
-window.addEventListener("load", onSiteLoad);
-
-// Register constants
-
-
-
-/* Global site js update */
-function onSiteLoad() {
+window.addEventListener("load", () => {
 
     /* Update active navbar tab */
     let activeTab = document.getElementById("active-tab").value;
     if (!(activeTab == null || activeTab == "" || activeTab == "none")) document.getElementById(activeTab).classList.add("active");
 
-    /* Session manager */
     const session = new CSession();
     session.validate().then((json) => {
 
         if (session.isActive()) {
-
             /* Tab rename */
             if (activeTab == "tab-login") {
                 document.getElementById(`${activeTab}-title`).innerHTML = "Cuenta";
             }
-
         }
-
-    }).catch((message) => {
 
     });
 
-}
-
-
-function getProfileInfo(prifile_id) {
-    var response = window.fetch('https://api.cdecountry.es/get/profile/1');
-    return response;
-}
-
-getProfileInfo(1).then((response) => response.json()).then((json) => {
-    console.info('got a response', json);
 });
