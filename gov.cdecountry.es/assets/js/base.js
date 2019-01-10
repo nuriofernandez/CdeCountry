@@ -219,8 +219,8 @@ class CSession {
             api.then((json) => {
                 if( json.error == null ) {
                     _this.sessionId = json.token;
-                    console.log(_this.sessionId);
-                    this.profile = new Profile(json.identity);
+                    _this.profile = new Profile(json.identity);
+                    Cookies.set("session-id", json.token);
                     resolve(json);
                     return;
                 }
