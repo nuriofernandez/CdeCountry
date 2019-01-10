@@ -59,6 +59,11 @@ document.querySelectorAll("[jsevent='form-login'").forEach( (element) => {
 
 
 function translateVars(){
+
+    document.querySelectorAll("[textreplaceinner='profile-id'").forEach( (element) => {
+        element.innerHTML = session.getProfile().getIdentity();
+    });
+
     document.querySelectorAll("[textreplaceinner='session-name'").forEach( (element) => {
         element.innerHTML = session.getProfile().getName();
     });
