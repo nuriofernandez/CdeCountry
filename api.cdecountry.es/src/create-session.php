@@ -40,7 +40,7 @@ $session = [];
 $session['expire'] = microtime(true) + (1000*60*60*24);
 $session['identity'] = $userdata['id'];
 $session['ip'] = $_SERVER['REMOTE_ADDR'];
-$session['token'] = md5($session['ip'] + microtime(true));
+$session['token'] = md5($session['identity'] + $session['ip'] + microtime(true));
 
 // Do an a sql call inserting the session data
 $prepare = $nlsql->getPDO()->prepare("INSERT INTO `user_sessions`(`session_token`, `session_expire`, `session_cdec`, `ipAddress`) VALUES (:token, :expire, :cdec, :ip)");
@@ -51,6 +51,6 @@ $prepare->bindParam(":ip", $session['ip'], PDO::PARAM_STR, 15);
 $prepare->execute();
 
 // Print the response
-print( json_encode( $session ) );
+print( json_encode( array( "token" => $session['token'], "expire" => $session['expire'], "identity" => $session['identity'] ) ) );
 
 ?>

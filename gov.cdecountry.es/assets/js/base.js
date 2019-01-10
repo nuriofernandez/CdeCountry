@@ -152,100 +152,6 @@ GCache.cache = {}; // Define cache variable
 
 
 /**
- * CdeCountry session manager.
- */
-class CSession {
-
-    constructor() {
-
-        // Store this on a _this
-        var _this = this;
-
-        if (Cookies.get("session-id")) {
-            this.sessionId = Cookies.get("session-id");
-            this.sessionTime = sessionId.replace(/[^\d]/g, "");
-            this.sessionExpired = (this.sessionTime > (currentTime - (1000 * 60 * 60 * 12)));
-        }
-
-    }
-
-    /**
-     * Request api validation (async)
-     */
-    async validate() {
-
-        // Store this on a _this
-        var _this = this;
-        var _sessionId = _this.sessionId;
-
-        // Validate proccess
-        return new Promise((resolve, stop) => {
-
-            // Stop if sessionId isn't set
-            if (!this.sessionId) return false;
-
-            // Call the api
-            let api = ApiCall.postCall(`https://api.cdecountry.es/session/validate`, {_sessionId});
-            api.then((json) => {
-                if(json.error == null) {
-                    _this.sessionValid = true;
-                    console.log("Your session has been validated.");
-                    this.profile = new Profile(json.identity);
-                    resolve(json);
-                    return;
-                }
-                _this.sessionValid = false;
-                console.log("Your session is invalid.")
-                resolve(json);
-            });
-
-        });
-
-    }
-
-    /**
-     * 
-     */
-    create(identity, password) {
-
-        // Store this on a _this
-        var _this = this;
-
-        // Create proccess
-        return new Promise((resolve, stop) => {
-
-            // Call the api
-            let api = ApiCall.postCall(`https://api.cdecountry.es/session/create`, {identity, password});
-            api.then((json) => {
-                if( json.error == null ) {
-                    _this.sessionId = json.token;
-                    _this.profile = new Profile(json.identity);
-                    Cookies.set("session-id", json.token);
-                    resolve(json);
-                    return;
-                }
-                
-                console.log(json.message);
-                resolve(json);
-            });
-
-        });
-    }
-
-
-    isActive() {
-        return this.sessionValid == true;
-    }
-
-    /**
-     * Get the [class Profile] of the session
-     */
-    getProfile(){
-        return this.profile;
-    }
-}
-
-/**
  * CdeCountry Profile manager
  */
 class Profile {
@@ -333,6 +239,98 @@ class Profile {
     }
 
 }
+
+/**
+ * CdeCountry session manager.
+ */
+class CSession {
+
+    constructor() {
+
+        // Store this on a _this
+        var _this = this;
+
+        // Obtain session-id from cookies. // If none it just be null
+        this.sessionId = Cookies.get("session-id");
+
+    }
+
+    /**
+     * Request api validation (async)
+     */
+    async validate() {
+
+        // Store this on a _this
+        var _this = this;
+        var _sessionId = _this.sessionId;
+
+        // Validate proccess
+        return new Promise((resolve, stop) => {
+
+            // Stop if sessionId isn't set
+            if (!this.sessionId) return false;
+
+            // Call the api
+            let api = ApiCall.postCall(`https://api.cdecountry.es/session/validate`, {_sessionId});
+            api.then((json) => {
+                if(json.error == null) {
+                    _this.sessionValid = true;
+                    console.log("Your session has been validated.");
+                    this.profile = new Profile(json.identity);
+                    resolve(json);
+                    return;
+                }
+                _this.sessionValid = false;
+                console.log("Your session is invalid.")
+                resolve(json);
+            });
+
+        });
+
+    }
+
+    /**
+     * 
+     */
+    create(identity, password) {
+
+        // Store this on a _this
+        var _this = this;
+
+        // Create proccess
+        return new Promise((resolve, stop) => {
+
+            // Call the api
+            let api = ApiCall.postCall(`https://api.cdecountry.es/session/create`, {identity, password});
+            api.then((json) => {
+                if( json.error == null ) {
+                    _this.sessionId = json.token;
+                    _this.profile = new Profile(json.identity);
+                    Cookies.set("session-id", json.token);
+                    resolve(json);
+                    return;
+                }
+                
+                console.log(json.message);
+                resolve(json);
+            });
+
+        });
+    }
+
+
+    isActive() {
+        return this.sessionValid == true;
+    }
+
+    /**
+     * Get the [class Profile] of the session
+     */
+    getProfile(){
+        return this.profile;
+    }
+}
+
 
 /*************************** Global site script **************************/
 
