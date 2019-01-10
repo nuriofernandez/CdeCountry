@@ -29,7 +29,7 @@ $site['active-tab'] = "tab-login";
                     <input type="password" class="form-control" name="user_pass" id="user_pass" autocomplete="current-password">
                     <small class="form-text text-muted"><a href="https://new.cdecountry.es/cuenta/restablecer">Restablecer contraseña</a></small>
                 </div>
-                <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+                <button jsevent="btn-login" type="submit" class="btn btn-primary">Iniciar sesión</button>
             </form>
             <div>
                 <b>¿Cual es mi contraseña?</b>
