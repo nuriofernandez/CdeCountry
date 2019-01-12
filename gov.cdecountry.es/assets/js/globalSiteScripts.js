@@ -27,35 +27,43 @@ window.addEventListener("DOMContentLoaded", () => {
 
     });
 
+    // Prepare login form
+    prepareForm();
+    translateVars();
+
+
 });
 
-document.querySelectorAll("[jsevent='form-login'").forEach( (element) => {
-    element.addEventListener('submit', (e) => {
-        
-        // Prevent submit
-        e.preventDefault();
-        
-        // Obtain login data 
-        let userIdentity = document.getElementById("user-id").value;
-        let userPassword = document.getElementById("user-pass").value;
-        let textMessage = document.getElementById("invalid-login-text");
 
-        // Try to create session
-        session.create(userIdentity, userPassword).then( (json) => {
+function prepareForm(){
+    document.querySelectorAll("[jsevent='form-login'").forEach( (element) => {
+        element.addEventListener('submit', (e) => {
+            
+            // Prevent submit
+            e.preventDefault();
+            
+            // Obtain login data 
+            let userIdentity = document.getElementById("user-id").value;
+            let userPassword = document.getElementById("user-pass").value;
+            let textMessage = document.getElementById("invalid-login-text");
 
-            if(session.isActive()){
-                
-                // TODO => Don't redirect, just rewritte the dom.
-                window.location.href="https://new.cdecountry.es/profile";
-                return;
-            }
+            // Try to create session
+            session.create(userIdentity, userPassword).then( (json) => {
 
-            textMessage.classList.remove("d-none");
-            textMessage.innerHTML = json.message;
+                if(session.isActive()){
+                    
+                    // TODO => Don't redirect, just rewritte the dom.
+                    window.location.href="https://new.cdecountry.es/profile";
+                    return;
+                }
 
-        });
-    });    
-});
+                textMessage.classList.remove("d-none");
+                textMessage.innerHTML = json.message;
+
+            });
+        });    
+    });
+}
 
 
 function translateVars(){

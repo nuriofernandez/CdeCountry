@@ -2,10 +2,15 @@
 /************************ Variable area ************************/
 $head['title'] = "Perfil";
 $site['active-tab'] = "tab-login";
+$profileId = isset($_GET['cid']) ? $_GET['cid'] : 0;
 ?>
 <main class="container">
 
-    <div id="profile-logout-bar" class="d-flex align-items-center p-1 mt-1 mb-1 text-white-50 bg-white rounded box-shadow">
+    <div id="paramsDiv" class="d-none">
+        <param name="profileId" value="<?php echo $profileId; ?>" />
+    </div>
+
+    <div id="profile-logout-bar" class="d-flex align-items-center p-1 mt-1 mb-1 text-white-50 bg-white rounded box-shadow d-none">
         <div class="lh-100 ml-1 p-2">
             <h4 textreplaceinner="session-name" class="mb-0 lh-100">Nombre Apellido</h4>
         </div>
