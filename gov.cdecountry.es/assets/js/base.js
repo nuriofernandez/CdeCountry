@@ -198,6 +198,7 @@ class Profile {
      * @param {Callback} callback function to run after api response 
      */
     runOnLoad(callback){
+        if(this.isReady()) return callback();
         this.onLoadCallback = callback;
     }
 
