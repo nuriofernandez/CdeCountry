@@ -86,7 +86,8 @@ function prepareForm(){
 
 function translateVars(){
 
-    let profileId = document.querySelector("param[name='profileId']");
+    let profileParam = document.querySelector("param[name='profileId']");
+    let profileId = (profileParam != null) ? profileParam.value : 0;
     if(profileId == 0) profileId = session.getProfile().getIdentity();
     let profile = new Profile(profileId.value);
 
