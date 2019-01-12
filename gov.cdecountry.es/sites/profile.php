@@ -16,7 +16,7 @@ $site['active-tab'] = "tab-login";
 
     <div class="row">
         <div class="login col-lg bg-white rounded box-shadow m-3 py-3">
-            <a id="link-twitter" href="#" target="_blank"><img id="profile-picture" src="https://avatars.io/static/default_128.jpg" class="profile-picture max-width rounded mr-3 mb-3 float-left" alt="Foto de perfil"></a>
+            <a id="link-twitter" href="#" target="_blank"><img srcreplace="profile-photo" id="profile-picture" src="https://avatars.io/static/default_128.jpg" class="profile-picture max-width rounded mr-3 mb-3 float-left" alt="Foto de perfil"></a>
             <div class="mt-3 pl-1">
                 <h3 textreplaceinner="profile-name" id="name" class="display-5">Nombre Apellido</h3>
                 <p textreplaceinner="profile-id" id="carnet-id">1</p>
@@ -26,7 +26,7 @@ $site['active-tab'] = "tab-login";
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">
                     <h3 class="noselect">Carnet de CdeCiudadano</h3>
-                    <img id="carnet-image" class="mr-auto ml-auto" style="width:100%; border-radius: 10px" src="https://i.imgur.com/X3emBOJ.png">
+                    <img srcreplace="profile-carnet" id="carnet-image" class="mr-auto ml-auto" style="width:100%; border-radius: 10px" src="https://i.imgur.com/X3emBOJ.png">
                 </li>
                 <li class="list-group-item">
                     <h3 class="noselect">Licencias</h3>
