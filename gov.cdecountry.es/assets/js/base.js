@@ -245,7 +245,7 @@ class Profile {
      */
     getTwitterProfilePhoto(){
         if(!this.isReady()) return; // Stop when the api didn't responded
-        return "https://avatars.io/twitter/" + this.getNombre();
+        return "https://avatars.io/twitter/" + this.getTwitter();
     }
 
     /**
