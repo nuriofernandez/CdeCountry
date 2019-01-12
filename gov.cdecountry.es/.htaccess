@@ -23,8 +23,8 @@ Header merge  Vary "Origin"
     RewriteRule ^logout$ index.php?web=logout [NC,L]
     RewriteRule ^login$ index.php?web=login [NC,L]
 
-    RewriteRule ^profile$ index.php?web=profile [NC,L]
     RewriteRule ^profile/(.\d)$ index.php?web=profile&cid=$1 [NC,L]
+    RewriteRule ^profile index.php?web=profile [NC,L]
     
     RewriteRule ^cuenta/restablecer$ index.php?web=password-request [NC,L]
     RewriteRule ^ciudadania$ index.php?web=ciudadania-request [NC,L]
