@@ -89,7 +89,7 @@ function translateVars(){
     let profileParam = document.querySelector("param[name='profileId']");
     let profileId = (profileParam != null) ? profileParam.value : 0;
     if(profileId == 0) profileId = session.getProfile().getIdentity();
-    let profile = new Profile(profileId.value);
+    let profile = new Profile(profileId);
 
     profile.runOnLoad( () => {
 
