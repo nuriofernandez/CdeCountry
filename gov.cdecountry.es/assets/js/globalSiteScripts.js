@@ -38,10 +38,20 @@ window.addEventListener("DOMContentLoaded", () => {
     // Prepare login form
     prepareForm();
     
+    prepareDynamic();
 
 
 });
 
+function prepareDynamic(){
+    document.querySelectorAll("[a='https://new.*'").forEach( (element) => {
+        element.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            DynamicSite.loadOnMain(`https://new.cdecountry.es/dynamic/${element.src}`);
+        });
+    });
+}
 
 function prepareForm(){
     document.querySelectorAll("[jsevent='form-login'").forEach( (element) => {
