@@ -77,6 +77,7 @@ function prepareForm(){
 function translateVars(){
 
     let profileId = document.querySelector("param[name='profileId']");
+    if(profileId == 0) profileId = session.getProfile().getIdentity();
     let profile = new Profile(profileId.value);
 
     profile.runOnLoad( () => {
@@ -123,3 +124,13 @@ function translateVars(){
 
 
 }
+
+/*** ///////////////////////////////////////////////////////////////// ***/
+/*************************** 3th part separator **************************/
+/*** ///////////////////////////////////////////////////////////////// ***/
+
+// Google Analitys JS
+window.dataLayer = window.dataLayer || [];
+function gtag() { dataLayer.push(arguments); }
+gtag('js', new Date());
+gtag('config', 'UA-89267571-4');

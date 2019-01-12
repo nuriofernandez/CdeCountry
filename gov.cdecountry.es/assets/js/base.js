@@ -1,13 +1,3 @@
-/*** ///////////////////////////////////////////////////////////////// ***/
-/*************************** 3th part separator **************************/
-/*** ///////////////////////////////////////////////////////////////// ***/
-
-// Google Analitys JS
-window.dataLayer = window.dataLayer || [];
-function gtag() { dataLayer.push(arguments); }
-gtag('js', new Date());
-gtag('config', 'UA-89267571-4');
-
 
 /*** ///////////////////////////////////////////////////////////////// ***/
 /************************** Code start separator *************************/
@@ -42,7 +32,7 @@ class ApiCall {
             window.fetch(url).then((response) => response.json()).then((json) => {
                 
                 // Add response to the cache
-                let cacheId = JSON.stringify({"url":url});
+                let cacheId = _this.buildCacheId(url);
                 GCache.addToCache(cacheId, json);
 
                 // Resolve the promise
@@ -84,7 +74,7 @@ class ApiCall {
             }).then((response) => response.json()).then((json) => {
                 
                 // Add response to the cache
-                let cacheId = JSON.stringify({"url":url, "post":data});
+                let cacheId = _this.buildCacheId(url,data);
                 GCache.addToCache(cacheId, json);
                 
                 // Resolve the promise
@@ -118,6 +108,76 @@ class ApiCall {
         // Check if the content is on cache
         let cacheId = this.buildCacheId(url,data);
         if(!GCache.isOnCache(cacheId)) return this.postCall(url, data);
+
+        // Return the cached data
+        return new Promise( (resolve) => {
+            resolve(GCache.getFromCache(cacheId));
+        });
+    }
+
+}
+
+
+/*** ///////////////////////////////////////////////////////////////// ***/
+/**************************** Class separator ****************************/
+/*** ///////////////////////////////////////////////////////////////// ***/
+
+
+/**
+ *  Api caller class 
+ */
+class DyanamicSite {
+
+    /**
+     * Api caller function
+     * @param {String} url Api url 
+     */
+    static get(url) {
+
+        // Store this on a _this
+        var _this = this;
+
+        // Build the promise response
+        return new Promise((resolve) => {
+
+            // Fetch to the api
+            window.fetch(url).then((response) => response.text()).then((html) => {
+                
+                // Add response to the cache
+                let cacheId = _this.buildCacheId(url);
+                GCache.addToCache(cacheId, html.body);
+
+                // Resolve the promise
+                resolve(html.body);
+
+            }).catch((message) => {
+
+                // On error display message on console.
+                console.log("[API] Error on fetch. "+message);
+                
+            });
+
+        });
+
+    }
+
+    /**
+     * Build a cache id
+     * @param {String} url Api URL
+     */
+    static buildCacheId(url){
+        return JSON.stringify({"url":url, "type":"html"});
+    }
+
+    /**
+     * Check if data is on cache and if is, obtain from them.
+     * In case the cache didn't have the data just do a new api call.
+     * @param {String} url Api URL
+     */
+    static cachedGet(url){
+        // Check if the content is on cache
+        let cacheId = this.buildCacheId(url);
+        if(!GCache.isOnCache(cacheId)) return this.get(url);
 
         // Return the cached data
         return new Promise( (resolve) => {
