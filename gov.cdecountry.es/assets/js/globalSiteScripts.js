@@ -71,4 +71,22 @@ function translateVars(){
     document.querySelectorAll("[textreplaceinner='profile-name'").forEach( (element) => {
         element.innerHTML = session.getProfile().getName();
     });
+
+    document.querySelectorAll("[srcreplace='session-carnet'").forEach( (element) => {
+        element.src = session.getProfile().getCarnet();
+    });
+
+    document.querySelectorAll("[srcreplace='profile-carnet'").forEach( (element) => {
+        element.src = session.getProfile().getCarnet();
+    });
+
+    document.querySelectorAll("[srcreplace='session-photo'").forEach( (element) => {
+        element.src = session.getProfile().getTwitterProfilePhoto();
+    });
+
+    document.querySelectorAll("[srcreplace='profile-photo'").forEach( (element) => {
+        element.src = session.getProfile().getTwitterProfilePhoto();
+    });
+
+
 }
