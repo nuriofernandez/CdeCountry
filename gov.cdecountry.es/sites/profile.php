@@ -21,7 +21,7 @@ $profileId = isset($_GET['cid']) ? $_GET['cid'] : 0;
 
     <div class="row">
         <div class="login col-lg bg-white rounded box-shadow m-3 py-3">
-            <a id="link-twitter" href="#" target="_blank"><img srcreplace="profile-photo" id="profile-picture" src="https://avatars.io/static/default_128.jpg" class="profile-picture max-width rounded mr-3 mb-3 float-left" alt="Foto de perfil"></a>
+            <a id="link-twitter" href="#" target="_blank"><img srcreplace="profile-photo" id="profile-picture" src="https://i.imgur.com/fNWS4Bt.png" class="profile-picture max-width rounded mr-3 mb-3 float-left" alt="Foto de perfil"></a>
             <div class="mt-3 pl-1">
                 <h3 textreplaceinner="profile-name" id="name" class="display-5">Nombre Apellido</h3>
                 <p textreplaceinner="profile-id" id="carnet-id">1</p>
