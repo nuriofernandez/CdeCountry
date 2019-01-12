@@ -31,6 +31,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
             // Show account navbar
             document.getElementById(`profile-logout-bar`).classList.replace("d-none","d-flex");
+        }else{
+            translateVars();
         }
 
     });
@@ -87,52 +89,57 @@ function prepareForm(){
 function translateVars(){
 
     let profileParam = document.querySelector("param[name='profileId']");
-    let profileId = (profileParam != null) ? profileParam.value : 0;
-    if(profileId == 0) profileId = session.getProfile().getIdentity();
-    let profile = new Profile(profileId);
+    if(profileParam){
 
-    profile.runOnLoad( () => {
-
-        document.querySelectorAll("[textreplaceinner='profile-id'").forEach( (element) => {
-            element.innerHTML = profile.getIdentity();
-        });
-
-        document.querySelectorAll("[textreplaceinner='profile-name'").forEach( (element) => {
-            element.innerHTML = profile.getName();
-        });
-
-        document.querySelectorAll("[srcreplace='profile-carnet'").forEach( (element) => {
-            element.addEventListener("error", () => element.src = "https://i.imgur.com/aZBWRqE.png" );
-            element.src = profile.getCarnet();
-        });
-
-        document.querySelectorAll("[srcreplace='profile-photo'").forEach( (element) => {
-            element.addEventListener("error", () => element.src = "https://i.imgur.com/fNWS4Bt.png" );
-            element.src = profile.getTwitterProfilePhoto();
-        });
-
-    });
-
-    document.querySelectorAll("[textreplaceinner='session-id'").forEach( (element) => {
-        element.innerHTML = session.getProfile().getIdentity();
-    });
-
-    document.querySelectorAll("[textreplaceinner='session-name'").forEach( (element) => {
-        element.innerHTML = session.getProfile().getName();
-    });
-
-    document.querySelectorAll("[srcreplace='session-carnet'").forEach( (element) => {
-        element.addEventListener("error", () => element.src = "https://i.imgur.com/aZBWRqE.png" );
-        element.src = session.getProfile().getCarnet();
-    });
-
-    document.querySelectorAll("[srcreplace='session-photo'").forEach( (element) => {
-        element.addEventListener("error", () => element.src = "https://i.imgur.com/fNWS4Bt.png" );
-        element.src = session.getProfile().getTwitterProfilePhoto();
-    });
-
+        let profileId = profileParam.value;
+        if(profileId == 0 && session) profileId = session.getProfile().getIdentity();
+        let profile = new Profile(profileId);
     
+        profile.runOnLoad( () => {
+    
+            document.querySelectorAll("[textreplaceinner='profile-id'").forEach( (element) => {
+                element.innerHTML = profile.getIdentity();
+            });
+    
+            document.querySelectorAll("[textreplaceinner='profile-name'").forEach( (element) => {
+                element.innerHTML = profile.getName();
+            });
+    
+            document.querySelectorAll("[srcreplace='profile-carnet'").forEach( (element) => {
+                element.addEventListener("error", () => element.src = "https://i.imgur.com/aZBWRqE.png" );
+                element.src = profile.getCarnet();
+            });
+    
+            document.querySelectorAll("[srcreplace='profile-photo'").forEach( (element) => {
+                element.addEventListener("error", () => element.src = "https://i.imgur.com/fNWS4Bt.png" );
+                element.src = profile.getTwitterProfilePhoto();
+            });
+    
+        });
+    }
+    
+    if( session ){
 
+        document.querySelectorAll("[textreplaceinner='session-id'").forEach( (element) => {
+            element.innerHTML = session.getProfile().getIdentity();
+        });
+    
+        document.querySelectorAll("[textreplaceinner='session-name'").forEach( (element) => {
+            element.innerHTML = session.getProfile().getName();
+        });
+    
+        document.querySelectorAll("[srcreplace='session-carnet'").forEach( (element) => {
+            element.addEventListener("error", () => element.src = "https://i.imgur.com/aZBWRqE.png" );
+            element.src = session.getProfile().getCarnet();
+        });
+    
+        document.querySelectorAll("[srcreplace='session-photo'").forEach( (element) => {
+            element.addEventListener("error", () => element.src = "https://i.imgur.com/fNWS4Bt.png" );
+            element.src = session.getProfile().getTwitterProfilePhoto();
+        });
+
+        
+    }
 
 }
 
