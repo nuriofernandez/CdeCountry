@@ -188,8 +188,17 @@ class Profile {
         ApiCall.call(`https://api.cdecountry.es/get/profile/${id}`).then((json) => {
             _this.data = json;
             _this.ready = true;
+            if(_this.onLoadCallback != null ) _this.onLoadCallback();
         });
 
+    }
+
+    /**
+     * On Load Function
+     * @param {Callback} callback function to run after api response 
+     */
+    runOnLoad(callback){
+        this.onLoadCallback = callback;
     }
 
     /**

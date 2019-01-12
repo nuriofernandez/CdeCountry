@@ -24,7 +24,7 @@ window.addEventListener("DOMContentLoaded", () => {
                 element.href="https://new.cdecountry.es/profile";
             });
 
-            translateVars();
+            session.getProfile().runOnLoad(translateVars);
         }
 
     });
