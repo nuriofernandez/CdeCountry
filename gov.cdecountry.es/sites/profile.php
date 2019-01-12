@@ -31,7 +31,7 @@ $profileId = isset($_GET['cid']) ? $_GET['cid'] : 0;
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">
                     <h3 class="noselect">Carnet de CdeCiudadano</h3>
-                    <img srcreplace="profile-carnet" id="carnet-image" class="mr-auto ml-auto" style="width:100%; border-radius: 10px" src="https://i.imgur.com/X3emBOJ.png">
+                    <img srcreplace="profile-carnet" id="carnet-image" class="mr-auto ml-auto" style="width:100%; border-radius: 10px" src="https://i.imgur.com/aZBWRqE.png">
                 </li>
                 <li class="list-group-item">
                     <h3 class="noselect">Licencias</h3>

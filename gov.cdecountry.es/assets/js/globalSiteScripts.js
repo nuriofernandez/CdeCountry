@@ -90,10 +90,12 @@ function translateVars(){
         });
 
         document.querySelectorAll("[srcreplace='profile-carnet'").forEach( (element) => {
+            element.addEventListener("error", () => element.src = "https://i.imgur.com/aZBWRqE.png" );
             element.src = profile.getCarnet();
         });
 
         document.querySelectorAll("[srcreplace='profile-photo'").forEach( (element) => {
+            element.addEventListener("error", () => element.src = "https://i.imgur.com/fNWS4Bt.png" );
             element.src = profile.getTwitterProfilePhoto();
         });
 
@@ -108,10 +110,12 @@ function translateVars(){
     });
 
     document.querySelectorAll("[srcreplace='session-carnet'").forEach( (element) => {
+        element.addEventListener("error", () => element.src = "https://i.imgur.com/aZBWRqE.png" );
         element.src = session.getProfile().getCarnet();
     });
 
     document.querySelectorAll("[srcreplace='session-photo'").forEach( (element) => {
+        element.addEventListener("error", () => element.src = "https://i.imgur.com/fNWS4Bt.png" );
         element.src = session.getProfile().getTwitterProfilePhoto();
     });
 
