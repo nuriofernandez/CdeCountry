@@ -17,14 +17,20 @@ window.addEventListener("DOMContentLoaded", () => {
     session.validate().then((json) => {
 
         if (session.isActive()) {
+
             /* Tab rename */
             document.getElementById(`tab-login-title`).innerHTML = "Cuenta";
             
+            // Link replace
             document.querySelectorAll("[href='https://new.cdecountry.es/login'").forEach( (element) => {
                 element.href="https://new.cdecountry.es/profile";
             });
 
+            // Profile loads
             session.getProfile().runOnLoad(translateVars);
+
+            // Show account navbar
+            document.getElementById(`profile-logout-bar`).classList.replace("d-none","d-flex");
         }
 
     });
@@ -70,7 +76,30 @@ function prepareForm(){
 
 function translateVars(){
 
-    document.querySelectorAll("[textreplaceinner='profile-id'").forEach( (element) => {
+    let profileId = document.querySelector("param[name='profileId']");
+    let profile = new Profile(profileId.value);
+
+    profile.runOnLoad( () => {
+
+        document.querySelectorAll("[textreplaceinner='profile-id'").forEach( (element) => {
+            element.innerHTML = profile.getIdentity();
+        });
+
+        document.querySelectorAll("[textreplaceinner='profile-name'").forEach( (element) => {
+            element.innerHTML = profile.getName();
+        });
+
+        document.querySelectorAll("[srcreplace='profile-carnet'").forEach( (element) => {
+            element.src = profile.getCarnet();
+        });
+
+        document.querySelectorAll("[srcreplace='profile-photo'").forEach( (element) => {
+            element.src = profile.getTwitterProfilePhoto();
+        });
+
+    });
+
+    document.querySelectorAll("[textreplaceinner='session-id'").forEach( (element) => {
         element.innerHTML = session.getProfile().getIdentity();
     });
 
@@ -78,15 +107,7 @@ function translateVars(){
         element.innerHTML = session.getProfile().getName();
     });
 
-    document.querySelectorAll("[textreplaceinner='profile-name'").forEach( (element) => {
-        element.innerHTML = session.getProfile().getName();
-    });
-
     document.querySelectorAll("[srcreplace='session-carnet'").forEach( (element) => {
-        element.src = session.getProfile().getCarnet();
-    });
-
-    document.querySelectorAll("[srcreplace='profile-carnet'").forEach( (element) => {
         element.src = session.getProfile().getCarnet();
     });
 
@@ -94,9 +115,7 @@ function translateVars(){
         element.src = session.getProfile().getTwitterProfilePhoto();
     });
 
-    document.querySelectorAll("[srcreplace='profile-photo'").forEach( (element) => {
-        element.src = session.getProfile().getTwitterProfilePhoto();
-    });
+    
 
 
 }
