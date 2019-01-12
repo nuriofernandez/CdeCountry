@@ -126,7 +126,7 @@ class ApiCall {
 /**
  *  Api caller class 
  */
-class DyanamicSite {
+class DynamicSite {
 
     /**
      * Api caller function
@@ -143,12 +143,16 @@ class DyanamicSite {
             // Fetch to the api
             window.fetch(url).then((response) => response.text()).then((html) => {
                 
+                let parser = new DOMParser();
+                let doc = parser.parseFromString(html, "text/html");
+                let content = doc.body;
+
                 // Add response to the cache
                 let cacheId = _this.buildCacheId(url);
-                GCache.addToCache(cacheId, html.body);
+                GCache.addToCache(cacheId, content);
 
                 // Resolve the promise
-                resolve(html.body);
+                resolve(content);
 
             }).catch((message) => {
 
@@ -159,6 +163,18 @@ class DyanamicSite {
 
         });
 
+    }
+
+    /**
+     * Replace Main innerHTML from a remote file
+     * @param {String} url 
+     */
+    static loadOnMain(url){
+
+        DynamicSite.get(url).then( (html) => {
+            document.getElementsByTagName("main")[0].innerHTML = html.getElementsByTagName("main")[0].innerHTML;
+        });
+        
     }
 
     /**
