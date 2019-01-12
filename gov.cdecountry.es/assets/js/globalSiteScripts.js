@@ -23,13 +23,15 @@ window.addEventListener("DOMContentLoaded", () => {
             document.querySelectorAll("[href='https://new.cdecountry.es/login'").forEach( (element) => {
                 element.href="https://new.cdecountry.es/profile";
             });
+
+            translateVars();
         }
 
     });
 
     // Prepare login form
     prepareForm();
-    translateVars();
+    
 
 
 });
