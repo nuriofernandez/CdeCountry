@@ -92,7 +92,7 @@ function translateVars(){
     if(profileParam){
 
         let profileId = profileParam.value;
-        if(profileId == 0 && session) profileId = session.getProfile().getIdentity();
+        if(profileId == 0 && session.isActive() ) profileId = session.getProfile().getIdentity();
         let profile = new Profile(profileId);
     
         profile.runOnLoad( () => {
@@ -118,7 +118,7 @@ function translateVars(){
         });
     }
     
-    if( session ){
+    if( session.isActive() ){
 
         document.querySelectorAll("[textreplaceinner='session-id'").forEach( (element) => {
             element.innerHTML = session.getProfile().getIdentity();
