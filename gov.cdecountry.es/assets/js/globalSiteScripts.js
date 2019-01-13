@@ -7,13 +7,15 @@
 const session = new CSession();
 
 // Register listeners
-
 window.addEventListener("DOMContentLoaded", () => {
 
     /* Update active navbar tab */
     let activeTab = document.getElementById("active-tab").value;
     if (!(activeTab == null || activeTab == "" || activeTab == "none")) document.getElementById(activeTab).classList.add("active");
 
+    // translateVars
+    translateVars();
+    setInterval(translateVars, 250);
 
     /** Validate session */
     session.validate().then((json) => {
@@ -36,12 +38,6 @@ window.addEventListener("DOMContentLoaded", () => {
         }
 
     });
-
-    translateVars();
-    window.addEventListener("DOMNodeInserted", (element) => {
-        translateVars();
-    });
-
 
     // Prepare login form
     prepareForm();
