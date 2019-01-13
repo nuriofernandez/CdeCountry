@@ -32,7 +32,7 @@ window.addEventListener("DOMContentLoaded", () => {
     DynamicSite.runOnChange( () => {
         prepareForm();
         prepareDynamic();
-        prepareLoggedIn();
+        if(session.isActive()) prepareLoggedIn();
         translateVars();
     });
 
