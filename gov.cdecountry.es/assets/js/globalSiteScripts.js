@@ -15,7 +15,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // translateVars
     translateVars();
-    setInterval(translateVars, 1000);
+    setInterval(translateVars, 250);
 
     /** Validate session */
     session.validate().then((json) => {
@@ -48,11 +48,11 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 function prepareDynamic(){
-    document.querySelectorAll("[a='https://new.*'").forEach( (element) => {
+    document.querySelectorAll("[a^='https://new.'").forEach( (element) => {
         element.addEventListener('click', (e) => {
             e.preventDefault();
-
-            DynamicSite.loadOnMain(`https://new.cdecountry.es/dynamic/${element.src}`);
+            let url = element.src.replace("https://new.cdecountry.es/", "");
+            DynamicSite.loadOnMain(`https://new.cdecountry.es/dynamic/${url}`);
         });
     });
 }
@@ -95,29 +95,32 @@ function translateVars(){
 
         let profileId = profileParam.value;
         if(profileId == 0 && session.isActive() ) profileId = session.getProfile().getIdentity();
-        let profile = new Profile(profileId);
-    
-        profile.runOnLoad( () => {
-    
-            document.querySelectorAll("[textreplaceinner='profile-id'").forEach( (element) => {
-                element.innerHTML = profile.getIdentity();
+
+        if(profileId != 0){
+            let profile = new Profile(profileId);
+        
+            profile.runOnLoad( () => {
+        
+                document.querySelectorAll("[textreplaceinner='profile-id'").forEach( (element) => {
+                    element.innerHTML = profile.getIdentity();
+                });
+        
+                document.querySelectorAll("[textreplaceinner='profile-name'").forEach( (element) => {
+                    element.innerHTML = profile.getName();
+                });
+        
+                document.querySelectorAll("[srcreplace='profile-carnet'").forEach( (element) => {
+                    element.addEventListener("error", () => element.src = "https://i.imgur.com/aZBWRqE.png" );
+                    element.src = profile.getCarnet();
+                });
+        
+                document.querySelectorAll("[srcreplace='profile-photo'").forEach( (element) => {
+                    element.addEventListener("error", () => element.src = "https://i.imgur.com/fNWS4Bt.png" );
+                    element.src = profile.getTwitterProfilePhoto();
+                });
+        
             });
-    
-            document.querySelectorAll("[textreplaceinner='profile-name'").forEach( (element) => {
-                element.innerHTML = profile.getName();
-            });
-    
-            document.querySelectorAll("[srcreplace='profile-carnet'").forEach( (element) => {
-                element.addEventListener("error", () => element.src = "https://i.imgur.com/aZBWRqE.png" );
-                element.src = profile.getCarnet();
-            });
-    
-            document.querySelectorAll("[srcreplace='profile-photo'").forEach( (element) => {
-                element.addEventListener("error", () => element.src = "https://i.imgur.com/fNWS4Bt.png" );
-                element.src = profile.getTwitterProfilePhoto();
-            });
-    
-        });
+        }
     }
     
     if( session.isActive() ){
