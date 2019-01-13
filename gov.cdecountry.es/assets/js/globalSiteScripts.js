@@ -21,6 +21,10 @@ session.on("created", () => {
 // Register listeners
 window.addEventListener("DOMContentLoaded", () => {
 
+    session.validate().then( (json) => {
+
+    });
+    
     // translateVars
     translateVars();
     setInterval(translateVars, 250);
