@@ -32,6 +32,8 @@ window.addEventListener("DOMContentLoaded", () => {
     DynamicSite.runOnChange( () => {
         prepareForm();
         prepareDynamic();
+        prepareLoggedIn();
+        translateVars();
     });
 
     DynamicSite.updateCurrentTab();

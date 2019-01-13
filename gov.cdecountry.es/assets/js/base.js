@@ -186,7 +186,7 @@ class DynamicSite {
     static updateCurrentTab(){
 
         document.querySelectorAll("li[id^='tab-'").forEach( (element) => {
-            if(element.classList.contains("active")) element.classList.add("active");
+            if(element.classList.hasOwnProperty("active")) element.classList.remove("active");
         });
 
         let activeTab = document.querySelector("param[name='active-tab']");
