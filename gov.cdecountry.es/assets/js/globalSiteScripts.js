@@ -14,6 +14,7 @@ window.addEventListener("DOMContentLoaded", () => {
     if (!(activeTab == null || activeTab == "" || activeTab == "none")) document.getElementById(activeTab).classList.add("active");
 
     // translateVars
+    translateVars();
     setInterval(translateVars, 1000);
 
     /** Validate session */
