@@ -183,6 +183,17 @@ class DynamicSite {
         
     }
 
+    static updateCurrentTab(){
+
+        document.querySelectorAll("li[id^='tab-'").forEach( (element) => {
+            if(element.classList.contains("active")) element.classList.add("active");
+        });
+
+        let activeTab = document.querySelector("param[name='active-tab']");
+        if (!(activeTab == null || activeTab.value == "" || activeTab.value == "none")) document.getElementById(activeTab.value).classList.add("active");
+
+    }
+
     /**
      * Build a cache id
      * @param {String} url Api URL
