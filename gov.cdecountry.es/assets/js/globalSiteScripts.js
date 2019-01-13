@@ -54,44 +54,51 @@ function prepareLoggedIn(){
 
 function prepareDynamic(){
 
+    /* Build the event */
+    let event = (e) => {
+        e.preventDefault();
+        let url = element.href.replace("https://new.cdecountry.es/", "");
+        DynamicSite.loadOnMain(`https://new.cdecountry.es/dynamic/${url}`);
+    };
+
     /* Link listener */
     document.querySelectorAll("a[href^='https://new.'").forEach( (element) => {
-        element.addEventListener('click', (e) => {
-            e.preventDefault();
-            let url = element.href.replace("https://new.cdecountry.es/", "");
-            DynamicSite.loadOnMain(`https://new.cdecountry.es/dynamic/${url}`);
-
-        });
+        element.removeEventListener("click", event);
+        element.addEventListener('click', event);
     });
 }
 
 function prepareForm(){
-    document.querySelectorAll("[jsevent='form-login'").forEach( (element) => {
-        element.addEventListener('submit', (e) => {
-            
-            // Prevent submit
-            e.preventDefault();
-            
-            // Obtain login data 
-            let userIdentity = document.getElementById("user-id").value;
-            let userPassword = document.getElementById("user-pass").value;
-            let textMessage = document.getElementById("invalid-login-text");
 
-            // Try to create session
-            session.create(userIdentity, userPassword).then( (json) => {
-
-                if(session.isActive()){
+    /* Build the event */
+    let event = (e) => {
+        // Prevent submit
+        e.preventDefault();
                     
-                    // TODO => Don't redirect, just rewritte the dom.
-                    window.location.href="https://new.cdecountry.es/profile";
-                    return;
-                }
+        // Obtain login data 
+        let userIdentity = document.getElementById("user-id").value;
+        let userPassword = document.getElementById("user-pass").value;
+        let textMessage = document.getElementById("invalid-login-text");
 
-                textMessage.classList.remove("d-none");
-                textMessage.innerHTML = json.message;
+        // Try to create session
+        session.create(userIdentity, userPassword).then( (json) => {
 
-            });
-        });    
+            if(session.isActive()){
+                
+                // TODO => Don't redirect, just rewritte the dom.
+                window.location.href="https://new.cdecountry.es/profile";
+                return;
+            }
+
+            textMessage.classList.remove("d-none");
+            textMessage.innerHTML = json.message;
+
+        });
+    }
+
+    document.querySelectorAll("[jsevent='form-login'").forEach( (element) => {
+        element.removeEventListener('submit', event);
+        element.addEventListener('submit', event);
     });
 }
 
