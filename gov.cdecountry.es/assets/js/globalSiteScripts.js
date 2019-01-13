@@ -51,7 +51,7 @@ function prepareDynamic(){
     document.querySelectorAll("a[href^='https://new.'").forEach( (element) => {
         element.addEventListener('click', (e) => {
             e.preventDefault();
-            let url = element.src.replace("https://new.cdecountry.es/", "");
+            let url = element.href.replace("https://new.cdecountry.es/", "");
             DynamicSite.loadOnMain(`https://new.cdecountry.es/dynamic/${url}`);
         });
     });
