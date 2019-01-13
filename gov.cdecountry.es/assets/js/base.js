@@ -416,7 +416,7 @@ class CSession {
                     _this.sessionValid = true;
                     console.log("Your session has been validated.");
                     this.profile = new Profile(json.identity);
-                    if(_this.callbackCollection.includes("validated")) _this.callbackCollection['validated'](json);
+                    if(_this.callbackCollection.hasOwnProperty("validated")) _this.callbackCollection['validated'](json);
                     resolve(json);
                     return;
                 }
@@ -450,7 +450,7 @@ class CSession {
                     _this.profile = new Profile(json.identity);
                     _this.sessionValid = true;
                     Cookies.set("session-id", json.token);
-                    if(_this.callbackCollection.includes("created")) _this.callbackCollection['created'](json);
+                    if(_this.callbackCollection.hasOwnProperty("created")) _this.callbackCollection['created'](json);
                     resolve(json);
                     return;
                 }
