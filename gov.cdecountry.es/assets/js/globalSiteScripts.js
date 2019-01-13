@@ -8,10 +8,6 @@ const session = new CSession();
 
 // Register listeners
 
-window.addEventListener("DOMNodeInserted", (element) => {
-    translateVars();
-});
-
 window.addEventListener("DOMContentLoaded", () => {
 
     /* Update active navbar tab */
@@ -40,6 +36,12 @@ window.addEventListener("DOMContentLoaded", () => {
         }
 
     });
+
+    translateVars();
+    window.addEventListener("DOMNodeInserted", (element) => {
+        translateVars();
+    });
+
 
     // Prepare login form
     prepareForm();
