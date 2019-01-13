@@ -30,6 +30,7 @@ Header merge  Vary "Origin"
     RewriteRule ^ciudadania$ index.php?web=ciudadania-request [NC,L]
 
     # DynamicSite
+    RewriteRule ^dynamic$ sites/home.php [NC,L]
     RewriteRule ^dynamic/login$ sites/login.php [NC,L]
     RewriteRule ^dynamic/profile$ sites/profile.php [NC,L]
     RewriteRule ^dynamic/profile/(.*)$ sites/profile.php?cid=$1 [NC,L]

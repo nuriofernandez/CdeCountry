@@ -38,7 +38,7 @@ ob_end_clean();
 		<!-- Navbar -->
 		<nav class="navbar navbar-expand navbar-dark bg-dark">
 			<div class="container">
-				<a class="navbar-brand" href="https://new.cdecountry.es">
+				<a class="navbar-brand" href="https://new.cdecountry.es/">
 					<img src="https://new.cdecountry.es/assets/img/banner-logo.png" class="d-inline-block align-top site-logo" alt="CdeCountry">
 				</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
