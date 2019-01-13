@@ -56,7 +56,7 @@ function prepareDynamic(){
 
     /* Build the event */
     let event = (e) => {
-        let element = e.srcElement;
+        let element = e.target;
         e.preventDefault();
         let url = element.href.replace("https://new.cdecountry.es/", "");
         DynamicSite.loadOnMain(`https://new.cdecountry.es/dynamic/${url}`);
@@ -126,11 +126,13 @@ function translateVars(){
                 });
         
                 document.querySelectorAll("[srcreplace='profile-carnet'").forEach( (element) => {
+                    element.removeEventListener("error", () => element.src = "https://i.imgur.com/aZBWRqE.png" );
                     element.addEventListener("error", () => element.src = "https://i.imgur.com/aZBWRqE.png" );
                     element.src = profile.getCarnet();
                 });
         
                 document.querySelectorAll("[srcreplace='profile-photo'").forEach( (element) => {
+                    element.removeEventListener("error", () => element.src = "https://i.imgur.com/fNWS4Bt.png" );
                     element.addEventListener("error", () => element.src = "https://i.imgur.com/fNWS4Bt.png" );
                     element.src = profile.getTwitterProfilePhoto();
                 });
