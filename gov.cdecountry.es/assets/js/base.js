@@ -192,7 +192,7 @@ class DynamicSite {
         let activeTab = document.querySelector("param[name='active-tab']");
         if (!(activeTab == null || activeTab.value == "" || activeTab.value == "none")) document.getElementById(activeTab.value).classList.add("active");
 
-        runCallback();
+        this.runCallback();
     }
 
     static runOnChange(callback){
