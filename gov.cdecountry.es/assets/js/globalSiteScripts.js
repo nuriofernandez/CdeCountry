@@ -6,38 +6,24 @@
 // Register constants
 const session = new CSession();
 
+session.on("validated", () => {
+
+    prepareLoggedIn();
+
+});
+
+session.on("created", () => {
+
+    prepareLoggedIn();
+
+});
+
 // Register listeners
 window.addEventListener("DOMContentLoaded", () => {
-
-    /* Update active navbar tab */
-    
 
     // translateVars
     translateVars();
     setInterval(translateVars, 250);
-
-    /** Validate session */
-    session.validate().then((json) => {
-
-        if (session.isActive()) {
-
-            /* Tab rename */
-            document.getElementById(`tab-login-title`).innerHTML = "Cuenta";
-            
-            // Link replace
-            document.querySelectorAll("[href='https://new.cdecountry.es/login'").forEach( (element) => {
-                element.href="https://new.cdecountry.es/profile";
-            });
-
-            // Profile loads
-            //session.getProfile().runOnLoad(translateVars);
-
-            // Show account navbar
-            let logoutbar = document.getElementById(`profile-logout-bar`);
-            if(logoutbar) logoutbar.classList.replace("d-none","d-flex");
-        }
-
-    });
 
     DynamicSite.runOnChange( () => {
         prepareForm();
@@ -46,10 +32,23 @@ window.addEventListener("DOMContentLoaded", () => {
 
     DynamicSite.updateCurrentTab();
 
-
 });
 
+function prepareLoggedIn(){
+    /* Update active navbar tab */
+    document.getElementById(`tab-login-title`).innerHTML = "Cuenta";
+    document.querySelectorAll("[href='https://new.cdecountry.es/login'").forEach( (element) => {
+        element.href="https://new.cdecountry.es/profile";
+    });
+
+    /* Active account navbar */
+    let logoutbar = document.getElementById(`profile-logout-bar`);
+    if(logoutbar) logoutbar.classList.replace("d-none","d-flex");
+}
+
 function prepareDynamic(){
+
+    /* Link listener */
     document.querySelectorAll("a[href^='https://new.'").forEach( (element) => {
         element.addEventListener('click', (e) => {
             e.preventDefault();
