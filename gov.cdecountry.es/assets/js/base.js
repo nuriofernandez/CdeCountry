@@ -179,6 +179,8 @@ class DynamicSite {
             window.history.pushState(html.innerHTML, title, nUrl);
 
             document.getElementsByTagName("main")[0].innerHTML = html.getElementsByTagName("main")[0].innerHTML;
+
+            this.runCallback();
         });
         
     }
