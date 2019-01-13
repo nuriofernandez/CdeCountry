@@ -10,7 +10,7 @@ const session = new CSession();
 window.addEventListener("DOMContentLoaded", () => {
 
     /* Update active navbar tab */
-    DynamicSite.updateCurrentTab();
+    
 
     // translateVars
     translateVars();
@@ -33,15 +33,18 @@ window.addEventListener("DOMContentLoaded", () => {
             //session.getProfile().runOnLoad(translateVars);
 
             // Show account navbar
-            document.getElementById(`profile-logout-bar`).classList.replace("d-none","d-flex");
+            let logoutbar = document.getElementById(`profile-logout-bar`);
+            if(logoutbar) logoutbar.classList.replace("d-none","d-flex");
         }
 
     });
 
-    // Prepare login form
-    prepareForm();
-    
-    prepareDynamic();
+    DynamicSite.updateCurrentTab( () => {
+        prepareForm();
+        prepareDynamic();
+    });
+
+    DynamicSite.runCallback();
 
 
 });
