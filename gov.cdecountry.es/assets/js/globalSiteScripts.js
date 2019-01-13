@@ -14,7 +14,7 @@ window.addEventListener("DOMContentLoaded", () => {
     if (!(activeTab == null || activeTab == "" || activeTab == "none")) document.getElementById(activeTab).classList.add("active");
 
     // translateVars
-    translateVars();
+    setInterval(translateVars, 1000);
 
     /** Validate session */
     session.validate().then((json) => {
@@ -30,7 +30,7 @@ window.addEventListener("DOMContentLoaded", () => {
             });
 
             // Profile loads
-            session.getProfile().runOnLoad(translateVars);
+            //session.getProfile().runOnLoad(translateVars);
 
             // Show account navbar
             document.getElementById(`profile-logout-bar`).classList.replace("d-none","d-flex");
