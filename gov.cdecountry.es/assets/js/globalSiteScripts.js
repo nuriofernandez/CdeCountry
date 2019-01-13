@@ -39,12 +39,12 @@ window.addEventListener("DOMContentLoaded", () => {
 
     });
 
-    DynamicSite.updateCurrentTab( () => {
+    DynamicSite.runOnChange( () => {
         prepareForm();
         prepareDynamic();
     });
 
-    DynamicSite.runCallback();
+    DynamicSite.updateCurrentTab();
 
 
 });
