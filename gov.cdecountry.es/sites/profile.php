@@ -8,6 +8,8 @@ $profileId = isset($_GET['cid']) ? $_GET['cid'] : 0;
 
     <div id="paramsDiv" class="d-none">
         <param name="profileId" value="<?php echo $profileId; ?>" />
+        <param name="active-tab" value="<?php echo $site['active-tab']; ?>" />
+        <param name="page-title" value="<?php echo $head['title']; ?>" />
     </div>
 
     <div class="row">

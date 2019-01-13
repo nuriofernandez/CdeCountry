@@ -32,7 +32,7 @@ ob_end_clean();
 		<link rel="stylesheet" type="text/css" href="https://new.cdecountry.es/assets/css/style.css">
 
 		<!-- Site dinamic head -->
-		<param id="active-tab" value="<?php echo $site['active-tab']; ?>">
+		<!-- <param id="active-tab" value="<?php echo $site['active-tab']; ?>"> -->
 	<body>
 		
 		<!-- Navbar -->
