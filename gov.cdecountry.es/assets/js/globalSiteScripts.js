@@ -48,7 +48,7 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 function prepareDynamic(){
-    document.querySelectorAll("[a^='https://new.'").forEach( (element) => {
+    document.querySelectorAll("a[href^='https://new.'").forEach( (element) => {
         element.addEventListener('click', (e) => {
             e.preventDefault();
             let url = element.src.replace("https://new.cdecountry.es/", "");
