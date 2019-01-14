@@ -32,14 +32,14 @@ ob_end_clean();
 		<link rel="stylesheet" type="text/css" href="https://new.cdecountry.es/assets/css/style.css">
 
 		<!-- Site dinamic head -->
-		<param id="active-tab" value="<?php echo $site['active-tab']; ?>">
+		<!-- <param id="active-tab" value="<?php echo $site['active-tab']; ?>"> -->
 	<body>
 		
 		<!-- Navbar -->
 		<nav class="navbar navbar-expand navbar-dark bg-dark">
 			<div class="container">
-				<a class="navbar-brand" href="https://new.cdecountry.es">
-					<img src="https://new.cdecountry.es/assets/img/banner-logo.png" width="325" height="80" class="d-inline-block align-top" alt="">
+				<a class="navbar-brand" href="https://new.cdecountry.es/">
+					<img src="https://new.cdecountry.es/assets/img/banner-logo.png" class="d-inline-block align-top site-logo" alt="CdeCountry">
 				</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>

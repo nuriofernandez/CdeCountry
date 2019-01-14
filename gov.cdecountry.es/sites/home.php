@@ -5,6 +5,13 @@ $site['active-tab'] = "none";
 ?>
 <main class="container">
 
+	<div id="paramsDiv" class="d-none">
+        <param name="profileId" value="<?php echo $profileId; ?>" />
+        <param name="active-tab" value="<?php echo $site['active-tab']; ?>" />
+        <param name="page-title" value="<?php echo $head['title']; ?>" />
+    </div>
+
+
 	<div class="blog-post">
 		<h2 id="article-title" class="blog-post-title">Bienvenido a la web de CdeCountry.</h2>
 		<p id="article-description" class="blog-post-meta">¿Qué es este lugar? ¿Qué es CdeCountry?</p>

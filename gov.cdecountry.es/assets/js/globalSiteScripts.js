@@ -6,35 +6,76 @@
 // Register constants
 const session = new CSession();
 
-// Register listeners
-window.addEventListener("DOMContentLoaded", () => {
+session.on("validated", () => {
 
-    /* Update active navbar tab */
-    let activeTab = document.getElementById("active-tab").value;
-    if (!(activeTab == null || activeTab == "" || activeTab == "none")) document.getElementById(activeTab).classList.add("active");
-
-    /** Validate session */
-    session.validate().then((json) => {
-
-        if (session.isActive()) {
-            /* Tab rename */
-            document.getElementById(`tab-login-title`).innerHTML = "Cuenta";
-            
-            document.querySelectorAll("[href='https://new.cdecountry.es/login'").forEach( (element) => {
-                element.href="https://new.cdecountry.es/profile";
-            });
-        }
-
-    });
+    prepareLoggedIn();
 
 });
 
-document.querySelectorAll("[jsevent='form-login'").forEach( (element) => {
-    element.addEventListener('submit', (e) => {
-        
+session.on("created", () => {
+
+    prepareLoggedIn();
+
+});
+
+// Register listeners
+window.addEventListener("DOMContentLoaded", () => {
+
+    session.validate().then( (json) => {
+
+    });
+    
+    // translateVars
+    translateVars();
+    setInterval(translateVars, 250);
+
+    DynamicSite.runOnChange( () => {
+        prepareForm();
+        prepareDynamic();
+        if(session.isActive()) prepareLoggedIn();
+        translateVars();
+    });
+
+    DynamicSite.updateCurrentTab();
+
+});
+
+function prepareLoggedIn(){
+    /* Update active navbar tab */
+    document.getElementById(`tab-login-title`).innerHTML = "Cuenta";
+    document.querySelectorAll("[href='https://new.cdecountry.es/login'").forEach( (element) => {
+        element.href="https://new.cdecountry.es/profile";
+    });
+
+    /* Active account navbar */
+    let logoutbar = document.getElementById(`profile-logout-bar`);
+    if(logoutbar) logoutbar.classList.replace("d-none","d-flex");
+}
+
+function prepareDynamic(){
+
+    /* Build the event */
+    let event = (e) => {
+        let element = e.target;
+        e.preventDefault();
+        let url = element.href.replace("https://new.cdecountry.es/", "");
+        DynamicSite.loadOnMain(`https://new.cdecountry.es/dynamic/${url}`);
+    };
+
+    /* Link listener */
+    document.querySelectorAll("a[href^='https://new.'").forEach( (element) => {
+        element.removeEventListener("click", event);
+        element.addEventListener('click', event);
+    });
+}
+
+function prepareForm(){
+
+    /* Build the event */
+    let event = (e) => {
         // Prevent submit
         e.preventDefault();
-        
+                    
         // Obtain login data 
         let userIdentity = document.getElementById("user-id").value;
         let userPassword = document.getElementById("user-pass").value;
@@ -54,21 +95,92 @@ document.querySelectorAll("[jsevent='form-login'").forEach( (element) => {
             textMessage.innerHTML = json.message;
 
         });
-    });    
-});
+    }
+
+    document.querySelectorAll("[jsevent='form-login'").forEach( (element) => {
+        element.removeEventListener('submit', event);
+        element.addEventListener('submit', event);
+    });
+}
 
 
 function translateVars(){
 
-    document.querySelectorAll("[textreplaceinner='profile-id'").forEach( (element) => {
-        element.innerHTML = session.getProfile().getIdentity();
-    });
+    let profileParam = document.querySelector("param[name='profileId']");
+    if(profileParam){
 
-    document.querySelectorAll("[textreplaceinner='session-name'").forEach( (element) => {
-        element.innerHTML = session.getProfile().getName();
-    });
+        let profileId = profileParam.value;
+        if(profileId == 0 && session.isActive() ) profileId = session.getProfile().getIdentity();
 
+<<<<<<< HEAD
     document.querySelectorAll("[textreplaceinner='profile-name'").forEach( (element) => {
         element.innerHTML = session.getProfile().getName();
     });
+
+    // carnet-image
 }
+=======
+        if(profileId != 0){
+            let profile = new Profile(profileId);
+        
+            profile.runOnLoad( () => {
+        
+                document.querySelectorAll("[textreplaceinner='profile-id'").forEach( (element) => {
+                    element.innerHTML = profile.getIdentity();
+                });
+        
+                document.querySelectorAll("[textreplaceinner='profile-name'").forEach( (element) => {
+                    element.innerHTML = profile.getName();
+                });
+        
+                document.querySelectorAll("[srcreplace='profile-carnet'").forEach( (element) => {
+                    element.removeEventListener("error", () => element.src = "https://i.imgur.com/aZBWRqE.png" );
+                    element.addEventListener("error", () => element.src = "https://i.imgur.com/aZBWRqE.png" );
+                    element.src = profile.getCarnet();
+                });
+        
+                document.querySelectorAll("[srcreplace='profile-photo'").forEach( (element) => {
+                    element.removeEventListener("error", () => element.src = "https://i.imgur.com/fNWS4Bt.png" );
+                    element.addEventListener("error", () => element.src = "https://i.imgur.com/fNWS4Bt.png" );
+                    element.src = profile.getTwitterProfilePhoto();
+                });
+        
+            });
+        }
+    }
+    
+    if( session.isActive() ){
+
+        document.querySelectorAll("[textreplaceinner='session-id'").forEach( (element) => {
+            element.innerHTML = session.getProfile().getIdentity();
+        });
+    
+        document.querySelectorAll("[textreplaceinner='session-name'").forEach( (element) => {
+            element.innerHTML = session.getProfile().getName();
+        });
+    
+        document.querySelectorAll("[srcreplace='session-carnet'").forEach( (element) => {
+            element.addEventListener("error", () => element.src = "https://i.imgur.com/aZBWRqE.png" );
+            element.src = session.getProfile().getCarnet();
+        });
+    
+        document.querySelectorAll("[srcreplace='session-photo'").forEach( (element) => {
+            element.addEventListener("error", () => element.src = "https://i.imgur.com/fNWS4Bt.png" );
+            element.src = session.getProfile().getTwitterProfilePhoto();
+        });
+
+        
+    }
+
+}
+
+/*** ///////////////////////////////////////////////////////////////// ***/
+/*************************** 3th part separator **************************/
+/*** ///////////////////////////////////////////////////////////////// ***/
+
+// Google Analitys JS
+window.dataLayer = window.dataLayer || [];
+function gtag() { dataLayer.push(arguments); }
+gtag('js', new Date());
+gtag('config', 'UA-89267571-4');
+>>>>>>> 308e1b95ca7d799b3e419b48d5e2f1621177f994

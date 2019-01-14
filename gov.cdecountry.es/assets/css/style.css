@@ -8,14 +8,14 @@ html {
 }
 
 body {
-  margin-bottom: 111px;
+  margin-bottom: 95px;
   font-family: 'Montserrat', sans-serif;
   background-color: #f9f9f9;
 }
 
 main {
   margin-top: 35px;
-  margin-bottom: 35px;
+  margin-bottom: 19px;
 }
 
 nav.navbar {
@@ -227,6 +227,16 @@ iframe.nofullScreen {
 .profile-picture{
   height: 285px;
   width: 285px;
+}
+
+.carnet-image {
+  width:100%; 
+  border-radius: 10px
+}
+
+.site-logo{
+  widows: 325px;
+  height: 80px;
 }
 
 /* Unused area */

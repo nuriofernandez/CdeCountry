@@ -22,11 +22,21 @@ Header merge  Vary "Origin"
     # Account sites
     RewriteRule ^logout$ index.php?web=logout [NC,L]
     RewriteRule ^login$ index.php?web=login [NC,L]
-    RewriteRule ^profile$ index.php?web=profile [NC,L]
+
+    RewriteRule ^profile/(.*)$ index.php?web=profile&cid=$1 [NC,L]
+    RewriteRule ^profile index.php?web=profile [NC,L]
+    
     RewriteRule ^cuenta/restablecer$ index.php?web=password-request [NC,L]
     RewriteRule ^ciudadania$ index.php?web=ciudadania-request [NC,L]
 
-    # Untaged sites
+    # DynamicSite
+    RewriteRule ^dynamic/$ sites/home.php [NC,L]
+    RewriteRule ^dynamic/login$ sites/login.php [NC,L]
+    RewriteRule ^dynamic/profile$ sites/profile.php [NC,L]
+    RewriteRule ^dynamic/profile/(.*)$ sites/profile.php?cid=$1 [NC,L]
+    RewriteRule ^dynamic/ciudadania$ sites/ciudadania-request.php [NC,L]
+    RewriteRule ^dynamic/cuenta/restablecer$ sites/password-request.php [NC,L]
+
 
 </IfModule>
 

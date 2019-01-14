@@ -1,13 +1,3 @@
-/*** ///////////////////////////////////////////////////////////////// ***/
-/*************************** 3th part separator **************************/
-/*** ///////////////////////////////////////////////////////////////// ***/
-
-// Google Analitys JS
-window.dataLayer = window.dataLayer || [];
-function gtag() { dataLayer.push(arguments); }
-gtag('js', new Date());
-gtag('config', 'UA-89267571-4');
-
 
 /*** ///////////////////////////////////////////////////////////////// ***/
 /************************** Code start separator *************************/
@@ -42,7 +32,7 @@ class ApiCall {
             window.fetch(url).then((response) => response.json()).then((json) => {
                 
                 // Add response to the cache
-                let cacheId = JSON.stringify({"url":url});
+                let cacheId = _this.buildCacheId(url);
                 GCache.addToCache(cacheId, json);
 
                 // Resolve the promise
@@ -84,7 +74,7 @@ class ApiCall {
             }).then((response) => response.json()).then((json) => {
                 
                 // Add response to the cache
-                let cacheId = JSON.stringify({"url":url, "post":data});
+                let cacheId = _this.buildCacheId(url,data);
                 GCache.addToCache(cacheId, json);
                 
                 // Resolve the promise
@@ -118,6 +108,116 @@ class ApiCall {
         // Check if the content is on cache
         let cacheId = this.buildCacheId(url,data);
         if(!GCache.isOnCache(cacheId)) return this.postCall(url, data);
+
+        // Return the cached data
+        return new Promise( (resolve) => {
+            resolve(GCache.getFromCache(cacheId));
+        });
+    }
+
+}
+
+
+/*** ///////////////////////////////////////////////////////////////// ***/
+/**************************** Class separator ****************************/
+/*** ///////////////////////////////////////////////////////////////// ***/
+
+
+/**
+ *  Api caller class 
+ */
+class DynamicSite {
+
+    /**
+     * Api caller function
+     * @param {String} url Api url 
+     */
+    static get(url) {
+
+        // Store this on a _this
+        var _this = this;
+
+        // Build the promise response
+        return new Promise((resolve) => {
+
+            // Fetch to the api
+            window.fetch(url).then((response) => response.text()).then((html) => {
+                
+                let parser = new DOMParser();
+                let doc = parser.parseFromString(html, "text/html");
+                let content = doc.body;
+
+                // Add response to the cache
+                let cacheId = _this.buildCacheId(url);
+                GCache.addToCache(cacheId, content);
+
+                // Resolve the promise
+                resolve(content);
+
+            }).catch((message) => {
+
+                // On error display message on console.
+                console.log("[API] Error on fetch. "+message);
+                
+            });
+
+        });
+
+    }
+
+    /**
+     * Replace Main innerHTML from a remote file
+     * @param {String} url 
+     */
+    static loadOnMain(url){
+
+        DynamicSite.get(url).then( (html) => {
+
+            let paramTitle = document.querySelector("param[name='page-title']");
+            let title = (paramTitle) ? paramTitle.value : "CdeCountry";
+            let nUrl = url.replace("https://new.cdecountry.es/dynamic", "https://new.cdecountry.es");
+            window.history.pushState(html.innerHTML, title, nUrl);
+
+            document.getElementsByTagName("main")[0].innerHTML = html.getElementsByTagName("main")[0].innerHTML;
+
+            this.runCallback();
+        });
+        
+    }
+
+    static updateCurrentTab(){
+
+        document.querySelectorAll("li[id^='tab-'").forEach( (element) => {
+            if(element.classList.hasOwnProperty("active")) element.classList.remove("active");
+        });
+
+        let activeTab = document.querySelector("param[name='active-tab']");
+        if (!(activeTab == null || activeTab.value == "" || activeTab.value == "none")) document.getElementById(activeTab.value).classList.add("active");
+
+        this.runCallback();
+    }
+
+    static runOnChange(callback){
+        this.runCallback = callback;
+    }
+
+    /**
+     * Build a cache id
+     * @param {String} url Api URL
+     */
+    static buildCacheId(url){
+        return JSON.stringify({"url":url, "type":"html"});
+    }
+
+    /**
+     * Check if data is on cache and if is, obtain from them.
+     * In case the cache didn't have the data just do a new api call.
+     * @param {String} url Api URL
+     */
+    static cachedGet(url){
+        // Check if the content is on cache
+        let cacheId = this.buildCacheId(url);
+        if(!GCache.isOnCache(cacheId)) return this.get(url);
 
         // Return the cached data
         return new Promise( (resolve) => {
@@ -185,11 +285,21 @@ class Profile {
         var _this = this;
 
         // Obtain profile data from the server API
-        ApiCall.call(`https://api.cdecountry.es/get/profile/${id}`).then((json) => {
+        ApiCall.cacheCall(`https://api.cdecountry.es/get/profile/${id}`).then((json) => {
             _this.data = json;
             _this.ready = true;
+            if(_this.onLoadCallback != null ) _this.onLoadCallback();
         });
 
+    }
+
+    /**
+     * On Load Function
+     * @param {Callback} callback function to run after api response 
+     */
+    runOnLoad(callback){
+        if(this.isReady()) return callback();
+        this.onLoadCallback = callback;
     }
 
     /**
@@ -236,7 +346,7 @@ class Profile {
      */
     getTwitterProfilePhoto(){
         if(!this.isReady()) return; // Stop when the api didn't responded
-        return "https://avatars.io/twitter/" + this.getNombre();
+        return "https://avatars.io/twitter/" + this.getTwitter();
     }
 
     /**
@@ -275,13 +385,21 @@ class CSession {
 
         // Obtain session-id from cookies. // If none it just be null
         this.sessionId = Cookies.get("session-id");
+        this.callbackCollection = {};
 
+    }
+
+    /**
+     * 
+     */
+    on(event, callback){
+        this.callbackCollection[event] = callback;
     }
 
     /**
      * Request api validation (async)
      */
-    async validate() {
+    validate() {
 
         // Store this on a _this
         var _this = this;
@@ -300,6 +418,7 @@ class CSession {
                     _this.sessionValid = true;
                     console.log("Your session has been validated.");
                     this.profile = new Profile(json.identity);
+                    if(_this.callbackCollection.hasOwnProperty("validated")) _this.callbackCollection['validated'](json);
                     resolve(json);
                     return;
                 }
@@ -333,6 +452,7 @@ class CSession {
                     _this.profile = new Profile(json.identity);
                     _this.sessionValid = true;
                     Cookies.set("session-id", json.token);
+                    if(_this.callbackCollection.hasOwnProperty("created")) _this.callbackCollection['created'](json);
                     resolve(json);
                     return;
                 }
