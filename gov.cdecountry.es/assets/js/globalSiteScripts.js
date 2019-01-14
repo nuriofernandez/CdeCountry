@@ -30,8 +30,19 @@ window.addEventListener("DOMContentLoaded", () => {
     setInterval(translateVars, 250);
 
     DynamicSite.runOnChange( () => {
-        prepareForm();
-        prepareDynamic();
+        
+        /* Link listener */
+        document.querySelectorAll("a[href^='https://new.'").forEach( (element) => {
+            element.removeEventListener("click", event_link_listener);
+            element.addEventListener('click', event_link_listener);
+        });
+
+        /* Link listener */
+        document.querySelectorAll("[jsevent='form-login'").forEach( (element) => {
+            element.removeEventListener('submit', event_profile_listener);
+            element.addEventListener('submit', event_profile_listener);
+        });
+
         if(session.isActive()) prepareLoggedIn();
         translateVars();
     });
@@ -52,8 +63,7 @@ function prepareLoggedIn(){
     if(logoutbar) logoutbar.classList.replace("d-none","d-flex");
 }
 
-function prepareDynamic(){
-
+function event_link_listener(e){
     /* Build the event */
     let event = (e) => {
         let element = e.target; // <--- ERROR
@@ -69,38 +79,32 @@ function prepareDynamic(){
     });
 }
 
-function prepareForm(){
+function event_profile_listener(){
 
-    /* Build the event */
-    let event = (e) => {
-        // Prevent submit
-        e.preventDefault();
+    // Prevent submit
+    e.preventDefault();
                     
-        // Obtain login data 
-        let userIdentity = document.getElementById("user-id").value;
-        let userPassword = document.getElementById("user-pass").value;
-        let textMessage = document.getElementById("invalid-login-text");
+    // Obtain login data 
+    let userIdentity = document.getElementById("user-id").value;
+    let userPassword = document.getElementById("user-pass").value;
+    let textMessage = document.getElementById("invalid-login-text");
 
-        // Try to create session
-        session.create(userIdentity, userPassword).then( (json) => {
+    // Try to create session
+    session.create(userIdentity, userPassword).then( (json) => {
 
-            if(session.isActive()){
-                
-                // TODO => Don't redirect, just rewritte the dom.
-                window.location.href="https://new.cdecountry.es/profile";
-                return;
-            }
+        if(session.isActive()){
+            
+            // TODO => Don't redirect, just rewritte the dom.
+            window.location.href="https://new.cdecountry.es/profile";
+            return;
+        }
 
-            textMessage.classList.remove("d-none");
-            textMessage.innerHTML = json.message;
+        textMessage.classList.remove("d-none");
+        textMessage.innerHTML = json.message;
 
-        });
-    }
-
-    document.querySelectorAll("[jsevent='form-login'").forEach( (element) => {
-        element.removeEventListener('submit', event);
-        element.addEventListener('submit', event);
     });
+
+    
 }
 
 
