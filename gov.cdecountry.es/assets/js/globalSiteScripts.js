@@ -112,14 +112,6 @@ function translateVars(){
         let profileId = profileParam.value;
         if(profileId == 0 && session.isActive() ) profileId = session.getProfile().getIdentity();
 
-<<<<<<< HEAD
-    document.querySelectorAll("[textreplaceinner='profile-name'").forEach( (element) => {
-        element.innerHTML = session.getProfile().getName();
-    });
-
-    // carnet-image
-}
-=======
         if(profileId != 0){
             let profile = new Profile(profileId);
         
@@ -183,4 +175,3 @@ window.dataLayer = window.dataLayer || [];
 function gtag() { dataLayer.push(arguments); }
 gtag('js', new Date());
 gtag('config', 'UA-89267571-4');
->>>>>>> 308e1b95ca7d799b3e419b48d5e2f1621177f994
