@@ -56,7 +56,7 @@ function prepareDynamic(){
 
     /* Build the event */
     let event = (e) => {
-        let element = e.srcElement;
+        let element = e.currentTarget;
         e.preventDefault();
         let url = element.href.replace("https://new.cdecountry.es/", "");
         DynamicSite.loadOnMain(`https://new.cdecountry.es/dynamic/${url}`);
