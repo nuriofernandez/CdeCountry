@@ -65,21 +65,13 @@ function prepareLoggedIn(){
 
 function event_link_listener(e){
     /* Build the event */
-    let event = (e) => {
-        let element = e.target; // <--- ERROR
-        e.preventDefault();
-        let url = element.href.replace("https://new.cdecountry.es/", "");
-        DynamicSite.loadOnMain(`https://new.cdecountry.es/dynamic/${url}`);
-    };
-
-    /* Link listener */
-    document.querySelectorAll("a[href^='https://new.'").forEach( (element) => {
-        element.removeEventListener("click", event);
-        element.addEventListener('click', event);
-    });
+    let element = e.target; // <--- ERROR
+    e.preventDefault();
+    let url = element.href.replace("https://new.cdecountry.es/", "");
+    DynamicSite.loadOnMain(`https://new.cdecountry.es/dynamic/${url}`);
 }
 
-function event_profile_listener(){
+function event_profile_listener(e){
 
     // Prevent submit
     e.preventDefault();
