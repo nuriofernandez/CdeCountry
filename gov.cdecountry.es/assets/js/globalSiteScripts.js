@@ -62,7 +62,7 @@ function updateNavbar(){
 
     let title = session.isActive() ? "Cuenta" : "Identificación";
     let urlFrom = session.isActive() ? "https://new.cdecountry.es/login" : "https://new.cdecountry.es/profile";
-    let urlTo = !session.isActive() ? "https://new.cdecountry.es/profile" : "https://new.cdecountry.es/login";
+    let urlTo = session.isActive() ? "https://new.cdecountry.es/profile" : "https://new.cdecountry.es/login";
 
     /* Update active navbar tab */
     document.getElementById(`tab-login-title`).innerHTML = title;
