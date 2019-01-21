@@ -106,9 +106,7 @@ function event_profile_listener(e){
     session.create(userIdentity, userPassword).then( (json) => {
 
         if(session.isActive()){
-            
-            // TODO => Don't redirect, just rewritte the dom.
-            window.location.href="https://new.cdecountry.es/profile";
+            DynamicSite.loadOnMain(`https://new.cdecountry.es/dynamic/profile`);
             return;
         }
 
