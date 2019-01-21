@@ -7,15 +7,15 @@
 const session = new CSession();
 
 session.on("validated", () => {
-
-    prepareLoggedIn();
-
+    updateNavbar();
 });
 
 session.on("created", () => {
+    updateNavbar();
+});
 
-    prepareLoggedIn();
-
+session.on("closed", () => {
+    updateNavbar();
 });
 
 // Register listeners
