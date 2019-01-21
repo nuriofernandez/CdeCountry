@@ -43,6 +43,12 @@ window.addEventListener("DOMContentLoaded", () => {
             element.addEventListener('submit', event_profile_listener);
         });
 
+        /* Link listener */
+        document.querySelectorAll("[jsevent='event-logout'").forEach( (element) => {
+            element.removeEventListener('submit', event_profile_logout);
+            element.addEventListener('submit', event_profile_logout);
+        });
+
         if(session.isActive()) prepareLoggedIn();
         translateVars();
     });
@@ -69,6 +75,13 @@ function event_link_listener(e){
     e.preventDefault();
     let url = element.href.replace("https://new.cdecountry.es/", "");
     DynamicSite.loadOnMain(`https://new.cdecountry.es/dynamic/${url}`);
+}
+
+function event_profile_logout(e){
+    /* Build the event */
+    e.preventDefault();
+    session.close(); // Close current session
+    DynamicSite.loadOnMain(`https://new.cdecountry.es/dynamic/login`);
 }
 
 function event_profile_listener(e){

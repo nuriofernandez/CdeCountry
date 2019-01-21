@@ -18,7 +18,7 @@ $profileId = isset($_GET['cid']) ? $_GET['cid'] : 0;
                 <h4 textreplaceinner="session-name" class="mb-0 lh-100">Nombre Apellido</h4>
             </div>
             <div class="lh-100 mr-0 ml-auto p-2">
-                <a class="btn btn-primary my-2 my-sm-0" href="https://new.cdecountry.es/logout" role="button">Cerrar sesión</a>
+                <a class="btn btn-primary my-2 my-sm-0" jsevent="event-logout" href="#" role="button">Cerrar sesión</a>
             </div>
         </div>
     </div>

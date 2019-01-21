@@ -397,6 +397,16 @@ class CSession {
     }
 
     /**
+     * 
+     */
+    close(){
+        Cookies.remove("session-id");
+        this.sessionId = null;
+        this.sessionValid = false;
+        console.log("Your session has been closed.");
+    }
+
+    /**
      * Request api validation (async)
      */
     validate() {
