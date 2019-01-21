@@ -38,15 +38,15 @@ window.addEventListener("DOMContentLoaded", () => {
         });
 
         /* Link listener */
-        document.querySelectorAll("[jsevent='form-login'").forEach( (element) => {
+        document.querySelectorAll("[jsevent='form-login']").forEach( (element) => {
             element.removeEventListener('submit', event_profile_listener);
             element.addEventListener('submit', event_profile_listener);
         });
 
         /* Link listener */
-        document.querySelectorAll("[jsevent='event-logout'").forEach( (element) => {
-            element.removeEventListener('submit', event_profile_logout);
-            element.addEventListener('submit', event_profile_logout);
+        document.querySelectorAll("[jsevent='event-logout']").forEach( (element) => {
+            element.removeEventListener('click', event_profile_logout);
+            element.addEventListener('click', event_profile_logout);
         });
 
         if(session.isActive()) prepareLoggedIn();
