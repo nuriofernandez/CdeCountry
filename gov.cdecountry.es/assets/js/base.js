@@ -170,7 +170,7 @@ class DynamicSite {
      * @param {String} url 
      */
     static loadOnMain(url){
-
+        $("main").hide(200);
         DynamicSite.get(url).then( (html) => {
 
             let paramTitle = document.querySelector("param[name='page-title']");
@@ -180,6 +180,7 @@ class DynamicSite {
 
             document.getElementsByTagName("main")[0].innerHTML = html.getElementsByTagName("main")[0].innerHTML;
             this.updateCurrentTab();
+            $("main").show(200);
 
             this.runCallback();
         });
