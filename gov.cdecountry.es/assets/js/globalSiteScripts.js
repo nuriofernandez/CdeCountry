@@ -31,6 +31,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
     DynamicSite.runOnChange( () => {
         
+        updateNavbar();
+
         /* Link listener */
         document.querySelectorAll("a[href^='https://new.'").forEach( (element) => {
             element.removeEventListener("click", event_link_listener);
@@ -49,7 +51,6 @@ window.addEventListener("DOMContentLoaded", () => {
             element.addEventListener('click', event_profile_logout);
         });
 
-        if(session.isActive()) prepareLoggedIn();
         translateVars();
     });
 
@@ -57,16 +58,23 @@ window.addEventListener("DOMContentLoaded", () => {
 
 });
 
-function prepareLoggedIn(){
+function updateNavbar(){
+
+    let title = session.isActive() ? "Cuenta" : "Identificación";
+    let urlFrom = session.isActive() ? "https://new.cdecountry.es/login" : "https://new.cdecountry.es/profile";
+    let urlTo = !session.isActive() ? "https://new.cdecountry.es/profile" : "https://new.cdecountry.es/login";
+
     /* Update active navbar tab */
-    document.getElementById(`tab-login-title`).innerHTML = "Cuenta";
-    document.querySelectorAll("[href='https://new.cdecountry.es/login'").forEach( (element) => {
-        element.href="https://new.cdecountry.es/profile";
+    document.getElementById(`tab-login-title`).innerHTML = title;
+    document.querySelectorAll(`[href='${urlFrom}'`).forEach( (element) => {
+        element.href = urlTo;
     });
 
     /* Active account navbar */
     let logoutbar = document.getElementById(`profile-logout-bar`);
-    if(logoutbar) logoutbar.classList.replace("d-none","d-flex");
+    if(logoutbar && session.isActive()) logoutbar.classList.replace("d-none","d-flex");
+    if(logoutbar && !session.isActive()) logoutbar.classList.replace("d-flex","d-none");
+
 }
 
 function event_link_listener(e){
