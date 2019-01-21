@@ -23,19 +23,28 @@ Header merge  Vary "Origin"
     RewriteRule ^logout$ index.php?web=logout [NC,L]
     RewriteRule ^login$ index.php?web=login [NC,L]
 
+    RewriteRule ^press/(.*)$ index.php?web=press&page=$1 [NC,L]
+    RewriteRule ^press/(.*)/(.*)$ index.php?web=press-article&id=$1&title=$2 [NC,L]
+    RewriteRule ^press index.php?web=press [NC,L]
+   
     RewriteRule ^profile/(.*)$ index.php?web=profile&cid=$1 [NC,L]
     RewriteRule ^profile index.php?web=profile [NC,L]
     
     RewriteRule ^cuenta/restablecer$ index.php?web=password-request [NC,L]
+    RewriteRule ^cuenta/ajustes$ index.php?web=account-settings [NC,L]
     RewriteRule ^ciudadania$ index.php?web=ciudadania-request [NC,L]
 
     # DynamicSite
     RewriteRule ^dynamic/$ sites/home.php [NC,L]
     RewriteRule ^dynamic/login$ sites/login.php [NC,L]
+    RewriteRule ^dynamic/press$ sites/press.php [NC,L]
+    RewriteRule ^dynamic/press/(.*)$ sites/press.php?page=$1 [NC,L]
+    RewriteRule ^dynamic/press/(.*)/(.*)$ sites/press-article.php?id=$1&title=$2 [NC,L]
     RewriteRule ^dynamic/profile$ sites/profile.php [NC,L]
     RewriteRule ^dynamic/profile/(.*)$ sites/profile.php?cid=$1 [NC,L]
     RewriteRule ^dynamic/ciudadania$ sites/ciudadania-request.php [NC,L]
     RewriteRule ^dynamic/cuenta/restablecer$ sites/password-request.php [NC,L]
+    RewriteRule ^dynamic/cuenta/ajustes$ sites/account-settings.php [NC,L]
 
 
 </IfModule>
