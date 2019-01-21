@@ -5,6 +5,12 @@ $site['active-tab'] = "tab-login";
 ?>
 <main class="container">
 
+    <div id="paramsDiv" class="d-none">
+        <param name="profileId" value="<?php echo $profileId; ?>" />
+        <param name="active-tab" value="<?php echo $site['active-tab']; ?>" />
+        <param name="page-title" value="<?php echo $head['title']; ?>" />
+    </div>
+
     <div class="my-3 p-3 bg-white rounded box-shadow">
         <h1 class="text-center">Solicitud de CdeCiudadanía</h1>
         <form id="request-ciudadania-form" method="POST" action="#">

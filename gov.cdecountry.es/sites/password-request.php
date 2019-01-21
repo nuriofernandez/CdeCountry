@@ -5,6 +5,12 @@ $site['active-tab'] = "tab-login";
 ?>
 <main class="container">
 
+    <div id="paramsDiv" class="d-none">
+        <param name="profileId" value="<?php echo $profileId; ?>" />
+        <param name="active-tab" value="<?php echo $site['active-tab']; ?>" />
+        <param name="page-title" value="<?php echo $head['title']; ?>" />
+    </div>
+
     <div class="bg-white rounded box-shadow m-3 p-3">
         <h3>Has olvidado tu CdeContraseña</h3>
         <form id="password-request-form" method="POST" action="#">

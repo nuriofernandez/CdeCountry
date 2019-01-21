@@ -4,6 +4,13 @@ $head['title'] = "Iniciar Sesión";
 $site['active-tab'] = "tab-login";
 ?>
 <main class="container">
+
+    <div id="paramsDiv" class="d-none">
+        <param name="profileId" value="<?php echo $profileId; ?>" />
+        <param name="active-tab" value="<?php echo $site['active-tab']; ?>" />
+        <param name="page-title" value="<?php echo $head['title']; ?>" />
+    </div>
+
     <div class="row">
 
         <div class="col-lg-8 bg-white rounded box-shadow m-3 p-3">
