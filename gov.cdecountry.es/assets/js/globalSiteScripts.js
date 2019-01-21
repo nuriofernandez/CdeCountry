@@ -65,7 +65,7 @@ function prepareLoggedIn(){
 
 function event_link_listener(e){
     /* Build the event */
-    let element = e.target; // <--- ERROR
+    let element = e.currentTarget; // <--- ERROR
     e.preventDefault();
     let url = element.href.replace("https://new.cdecountry.es/", "");
     DynamicSite.loadOnMain(`https://new.cdecountry.es/dynamic/${url}`);
