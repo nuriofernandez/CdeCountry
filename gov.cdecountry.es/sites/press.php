@@ -1,7 +1,7 @@
 <?php 
 /************************ Variable area ************************/
 $head['title'] = "Press";
-$site['active-tab'] = "press";
+$site['active-tab'] = "tab-press";
 ?>
 <main class="container">
 
