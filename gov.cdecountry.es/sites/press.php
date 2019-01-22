@@ -11,42 +11,37 @@ $site['active-tab'] = "tab-press";
         <param name="page-title" value="<?php echo $head['title']; ?>" />
     </div>
 
-
-	<div class="blog-post">
-		<h2 id="article-title" class="blog-post-title">Bienvenido a la web de CdeCountry.</h2>
-		<p id="article-description" class="blog-post-meta">¿Qué es este lugar? ¿Qué es CdeCountry?</p>
-		<div id="article-image" style="background: url('https://i.imgur.com/K59tBXu.png') center no-repeat;width: 100%;height: 200px;background-size: cover;background-position: center center;"></div>
-		<div style="height: 10px"></div>
-		<div id="article-content">
-			<p>CdeCountry es una nación que defiende los intereses de todos los CdeCiudadanos.</p>
-			<p><b>¿Qué es CdeCountry?</b></p>
-			<p>
-				En la actualidad, cerca de un millón de CdeCiudadanos residen en esta nación y se mantienen altas tasas de inmigración.
-				CdeCountry no obliga a tener un visado o carnet de identidad para poder residir en su territorio, pero si ofrece la posibilidad de sacarse un CdeCarnet de forma totalmente gratuita.
-				Además, este proceso es extremadamente rápido y fácil.
-			</p>
-			<p><b>¿Cómo puede alguien solicitar la CdeCiudadanía?</b></p>
-			<p>
-				¡Muy fácil! CdeCountry tiene un formulario web para hacer esta solicitud, la cual será respondida en menos de 5 minutos. El enlace para solicitarla es el siguiente:
-				<a href="https://gov.cdecountry.es/ciudadania">https://gov.cdecountry.es/ciudadania</a>
-			</p>
-			<p><b>¿Para qué sirve la CdeCiudadanía?</b></p>
-			<p>
-				La CdeCiudadanía te da derecho a voto y a usar los servicios de CdeCountry. Como por ejemplo, publicar artículos de prensa en esta web.
-				También se te entregará un CdeCarnet el cual podrás imprimir para llevarlo siempre contigo.
-			</p>
-			<p><b>Canal de televisión CdeCountry TV</b></p>
-			<p>
-				CdeCountry dispone de su propio canal de televisión, en el cual se emiten documentales y programas relacionados con la divulgación.
-				Este canal es accesible para todos y es totalmente gratuito. Puedes visionarlo a través de este enlace:
-				<a href="https://gov.cdecountry.es/tv">https://gov.cdecountry.es/tv</a>
-			</p>
-			<p><b>Mapa 3D de CdeCountry</b></p>
-			<p>
-				CdeCountry dispone de un mapa 3D creado por CdeCoogle, este muestra las distintas ciudades de CdeCountry y algunas curiosidades de la nación. Puedes acceder a el a través de este enlace:
-				<a href="https://gov.cdecountry.es/mapa">https://gov.cdecountry.es/mapa</a>
-			</p>
+    <div class="mb-3 d-flex align-items-center p-1 mt-1 mb-1 text-white-50 bg-white rounded box-shadow">
+		<div class="lh-100 ml-1 p-2">
+			<h4 class="mb-0 lh-100">Nombre Apellido</h4>
+		</div>
+		<div class="lh-100 mr-0 ml-auto p-2">
+			<a class="btn btn-outline-success my-2 my-sm-0" href="https://gov.cdecountry.es/press/post-editor" role="button">Añadir articulo</a>
+			<a class="btn btn-primary my-2 my-sm-0" href="https://gov.cdecountry.es/logout" role="button">Cerrar sesión</a>
 		</div>
 	</div>
+
+	<div id="blog-list">
+        <section style="margin-bottom: 40px;">
+            <div class="container">
+                <div class="card">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <a href="#" target="_blank">
+                                <div class="card-img-bottom" style="color: #fff; height: 100%; background: url('<?php echo "https://i.imgur.com/K59tBXu.png"; ?>') center no-repeat; background-size: cover;"></div>
+                            </a>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="card-block" style="padding: 15px;">
+                                <h4 class="card-title">Titulo</h4>
+                                <p class="card-text">Descripción</p>
+                                <a href="#" class="btn btn-primary">Seguir leyendo...</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 
 </main>
