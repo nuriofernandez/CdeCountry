@@ -97,8 +97,13 @@ function event_profile_print(e){
     /* Build the event */
     let element = e.currentTarget; // <--- ERROR
     e.preventDefault();
-    let W = window.open(session.getProfile().getCarnet());
-    W.window.print();
+
+    var printContents = "<img src='"+session.getProfile().getCarnet()+"'>";
+    var originalContents = document.body.innerHTML;
+
+    document.body.innerHTML = printContents;
+    window.print();
+    document.body.innerHTML = originalContents;
 }
 
 function event_link_listener(e){
