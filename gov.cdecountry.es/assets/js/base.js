@@ -292,6 +292,8 @@ class Profile {
 
         // Obtain profile data from the server API
         ApiCall.cacheCall(`https://api.cdecountry.es/get/profile/${id}`).then((json) => {
+            if(json.error) return;
+            
             _this.data = json;
             _this.ready = true;
             if(_this.onLoadCallback != null ) _this.onLoadCallback();
