@@ -51,6 +51,12 @@ window.addEventListener("DOMContentLoaded", () => {
             element.addEventListener('click', event_profile_logout);
         });
 
+        /* Link listener */
+        document.querySelectorAll("[jsevent='print-btn']").forEach( (element) => {
+            element.removeEventListener('click', event_profile_print);
+            element.addEventListener('click', event_profile_print);
+        });
+
         translateVars();
     });
 
@@ -70,11 +76,28 @@ function updateNavbar(){
         element.href = urlTo;
     });
 
+}
+
+function updateSessionChanges(){
+
     /* Active account navbar */
     let logoutbar = document.getElementById(`profile-logout-bar`);
     if(logoutbar && session.isActive()) logoutbar.classList.replace("d-none","d-flex");
     if(logoutbar && !session.isActive()) logoutbar.classList.replace("d-flex","d-none");
 
+    /* Active account navbar */
+    let printbtn = document.getElementById(`btn-btn`);
+    if(printbtn && session.isActive()) printbtn.classList.remove("d-none","d-finlinelex");
+    if(printbtn && !session.isActive()) printbtn.classList.replace("d-inline","d-none");
+
+}
+
+function event_profile_print(e){
+    /* Build the event */
+    let element = e.currentTarget; // <--- ERROR
+    e.preventDefault();
+    let W = window.open(session.getCarnet());
+    W.window.print();
 }
 
 function event_link_listener(e){
