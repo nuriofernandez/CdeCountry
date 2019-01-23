@@ -104,6 +104,7 @@ function event_profile_print(e){
     document.body.innerHTML = printContents;
     window.print();
     document.body.innerHTML = originalContents;
+    DynamicSite.runCallback();
 }
 
 function event_link_listener(e){
