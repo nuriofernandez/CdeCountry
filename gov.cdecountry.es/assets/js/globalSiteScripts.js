@@ -87,7 +87,7 @@ function updateSessionChanges(){
     if(logoutbar && !session.isActive()) logoutbar.classList.replace("d-flex","d-none");
 
     /* Active account navbar */
-    let printbtn = document.getElementById(`btn-btn`);
+    let printbtn = document.getElementById(`print-btn`);
     if(printbtn && session.isActive()) printbtn.classList.remove("d-none","d-finlinelex");
     if(printbtn && !session.isActive()) printbtn.classList.replace("d-inline","d-none");
 
@@ -97,7 +97,7 @@ function event_profile_print(e){
     /* Build the event */
     let element = e.currentTarget; // <--- ERROR
     e.preventDefault();
-    let W = window.open(session.getCarnet());
+    let W = window.open(session.getProfile().getCarnet());
     W.window.print();
 }
 
