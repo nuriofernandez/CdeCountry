@@ -163,23 +163,23 @@ function translateVars(){
             profile.runOnLoad( () => {
         
                 document.querySelectorAll("[textreplaceinner='profile-id'").forEach( (element) => {
-                    element.innerHTML = profile.getIdentity();
+                    if(profile.isReady()) element.innerHTML = profile.getIdentity();
                 });
         
                 document.querySelectorAll("[textreplaceinner='profile-name'").forEach( (element) => {
-                    element.innerHTML = profile.getName();
+                    if(profile.isReady()) element.innerHTML = profile.getName();
                 });
         
                 document.querySelectorAll("[srcreplace='profile-carnet'").forEach( (element) => {
                     element.removeEventListener("error", () => element.src = "https://i.imgur.com/aZBWRqE.png" );
                     element.addEventListener("error", () => element.src = "https://i.imgur.com/aZBWRqE.png" );
-                    element.src = profile.getCarnet();
+                    if(profile.isReady()) element.src = profile.getCarnet();
                 });
         
                 document.querySelectorAll("[srcreplace='profile-photo'").forEach( (element) => {
                     element.removeEventListener("error", () => element.src = "https://i.imgur.com/fNWS4Bt.png" );
                     element.addEventListener("error", () => element.src = "https://i.imgur.com/fNWS4Bt.png" );
-                    element.src = profile.getTwitterProfilePhoto();
+                    if(profile.isReady()) element.src = profile.getTwitterProfilePhoto();
                 });
         
             });
