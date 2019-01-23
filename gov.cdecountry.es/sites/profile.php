@@ -35,7 +35,7 @@ $profileId = isset($_GET['cid']) ? $_GET['cid'] : 0;
         <div class="col-lg-8 bg-white rounded box-shadow m-3 p-3">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">
-                    <h3 class="noselect">Carnet de CdeCiudadano</h3>
+                    <h3 class="noselect">Carnet de CdeCiudadano <a class="d-none" jsevent="print-btn" href="#"> <i class="fas fa-print"></i> </a></h3>
                     <img srcreplace="profile-carnet" id="carnet-image" class="mr-auto ml-auto carnet-image" src="https://i.imgur.com/aZBWRqE.png">
                 </li>
                 <li class="list-group-item">
