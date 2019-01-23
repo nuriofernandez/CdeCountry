@@ -57,6 +57,7 @@ window.addEventListener("DOMContentLoaded", () => {
             element.addEventListener('click', event_profile_print);
         });
 
+        updateSessionChanges();
         translateVars();
     });
 
