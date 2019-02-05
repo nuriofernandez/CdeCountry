@@ -5,6 +5,7 @@ function onYouTubeIframeAPIReady() {
     player = new YT.Player('video-placeholder', {
         videoId: setVideoByNow(false),
         playerVars: {
+            cc_load_policy: 3,
             autoplay: 1,
             controls: 0,
             color: 'white',
