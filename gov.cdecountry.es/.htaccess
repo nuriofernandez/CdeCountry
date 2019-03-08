@@ -29,6 +29,8 @@ Header merge  Vary "Origin"
    
     RewriteRule ^profile/(.*)$ index.php?web=profile&cid=$1 [NC,L]
     RewriteRule ^profile index.php?web=profile [NC,L]
+
+    RewriteRule ^elections index.php?web=elections [NC,L]
     
     RewriteRule ^cuenta/restablecer$ index.php?web=password-request [NC,L]
     RewriteRule ^cuenta/ajustes$ index.php?web=account-settings [NC,L]
@@ -37,6 +39,7 @@ Header merge  Vary "Origin"
     # DynamicSite
     RewriteRule ^dynamic/$ sites/home.php [NC,L]
     RewriteRule ^dynamic/tv$ sites/tv.php [NC,L]
+    RewriteRule ^dynamic/elections$ sites/elections.php [NC,L]
     RewriteRule ^dynamic/login$ sites/login.php [NC,L]
     RewriteRule ^dynamic/press$ sites/press.php [NC,L]
     RewriteRule ^dynamic/press/(.*)$ sites/press.php?page=$1 [NC,L]
