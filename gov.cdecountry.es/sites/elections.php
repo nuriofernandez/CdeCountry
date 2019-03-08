@@ -54,8 +54,8 @@
                 
                     <div>
                         <div class="number">
+                            <a href="https://new.cdecountry.es/profile/1" target="_blank"><i alt="ver perfil"><i class="fas fa-user-circle"></i></i></a><i alt="ver twitter">
                             <a href="https://twitter.com/xxnurioxx" target="_blank"><i alt="ver twitter"><i class="fab fa-twitter"></i></i></a><i alt="ver twitter">
-                            <a href="https://new.cdecountry.es/profile/1" target="_blank"><i alt="ver twitter"><i class="fas fa-user-circle"></i></i></a><i alt="ver twitter">
                             <label for="party-0-diputy-0">Nombre Apellido</label>
                             <input class="float-right" type="checkbox" id="party-0-diputy-0">
                         </div>
