@@ -28,10 +28,10 @@
                             </div>
                         </div>
                         <div class="row small text-dark options font-weight-bold">
-                            <div class="col-4">
+                            <div class="col-4 pl-0">
                                 <a id="party-0-twitter-link" href="https://twitter.com/PCCDCC" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
                             </div>
-                            <div class="col">
+                            <div class="col pr-0">
                                 <a id="party-0-more-info" class="float-right" href="http://pccdcc.ml/wp-content/uploads/2018/08/Programa_Politico-4.pdf" target="_blank"><i class="fas fa-file"></i> Programa electoral</a>
                             </div>
                         </div>
