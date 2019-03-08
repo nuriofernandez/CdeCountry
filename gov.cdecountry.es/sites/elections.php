@@ -38,10 +38,10 @@
                   <div class="card-body candidates">
                      <div class="row">
                         <div class="col">
-                           <h6 id="party-0-deputies-amount">21 Candidatos</h6>
+                           <h6><b id="party-0-deputies-amount">00</b> Candidatos</h6>
                         </div>
                         <div class="col">
-                           <button onclick="checkAll(this)" class="btn btn-primary btn-sm vote-party-btn">Votar a todo el partido</button>
+                           <button onclick="checkAll(this)" class="btn btn-primary btn-sm vote-party-btn">Marcar a todos</button>
                         </div>
                      </div>
                      <hr class="mt-1">
