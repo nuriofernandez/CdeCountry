@@ -29,20 +29,19 @@ if($prepare->rowCount() == 0) die( json_encode( array( "error" => "authentificat
 // Obtain user information from database
 $userdata = $prepare->fetch(PDO::FETCH_ASSOC);
 
-// Create user password hash 
-$hashedCredential = hash('sha256', $userdata['pass_salt'] . hash('sha256', $request['password'] . md5($userdata['pass_salt'])) . $userdata['pass_salt']);
+// Build restore token
+$token_salt = hash('sha256', md5( substr($userdata['pass_salt'], 0, 10) ) );
+$token_time = round(microtime(true)/60/10);
 
-// Validate user password hashes
-if($hashedCredential != $userdata['password']) die( json_encode( array( "error" => "authentification_error", "message" => "La contraseña no es valida." ) ) );
+$restore_token = md5( md5($token_salt) . $token_time );
 
-// Create new session variables
-$session = [];
-$session['expire'] = microtime(true) + (1000*60*60*24);
-$session['identity'] = $userdata['id'];
-$session['ip'] = $_SERVER['REMOTE_ADDR'];
-$session['token'] = md5($session['identity'] + $session['ip'] + microtime(true));
+// Build email body
+$mail_html = "";
+
+// Send the email
+
 
 // Print the response
-print( json_encode( array( "token" => $session['token'], "expire" => $session['expire'], "identity" => $session['identity'] ) ) );
+print( json_encode( array( "sended" => "true" ) ) );
 
 ?>
