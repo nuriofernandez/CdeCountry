@@ -20,6 +20,7 @@ class Mailer {
 
     public function __construct($to, $subject, $html, $content){
 
+        global $mailsrv;
         $this->mail = new PHPMailer(true);
         try {
             //Server settings
