@@ -1,0 +1,40 @@
+.container {
+    font-family: 'Montserrat', sans-serif;
+    width: 600px;
+    height: 350px;
+    position: relative;
+    text-align: center;
+    color: white;
+ }
+ 
+ /* Bottom left text */
+ .bottom-left {
+     position: absolute;
+     bottom: 13px;
+     left: 12px;
+ }
+ 
+ body{
+    margin: 0px;
+ }
+ 
+ /* Bottom right text */
+ /* Bottom right text */
+ .bottom-right {
+     position: absolute;
+     bottom: 8px;
+     right: 27px;
+     color: #2d2d2d;
+     font-weight: 600;
+     font-size: x-large;
+     text-shadow: 1px 1px 4px #eee;
+ }
+ 
+ 
+ /* Centered text */
+ .centered {
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+ }
