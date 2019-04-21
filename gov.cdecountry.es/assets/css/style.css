@@ -169,7 +169,7 @@ iframe.nofullScreen {
   height: 624px;
 }
 
-iframe.nofullScreen {
+iframe.mapfullScreen {
   width: 100%;
   height: calc( 100vh - 165px);
 }
