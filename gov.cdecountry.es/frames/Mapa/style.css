@@ -1,0 +1,9 @@
+body{
+    border: 0;
+    margin: 0;
+}
+
+#mapframe{
+    height: 100%;
+    width: 100%;
+}
