@@ -178,7 +178,7 @@ class DynamicSite {
             let nUrl = url.replace("https://new.cdecountry.es/dynamic", "https://new.cdecountry.es");
             window.history.pushState(html.innerHTML, title, nUrl);
             
-            document.getElementsById("dynamicDiv")[0].innerHTML = html.getElementsById("dynamicDiv")[0].innerHTML;
+            document.getElementById("dynamicDiv").innerHTML = html.getElementById("dynamicDiv").innerHTML;
             paramTitle = document.querySelector("param[name='page-title']");
             title = (paramTitle) ? paramTitle.value : "CdeCountry";
             document.title = title+" | CdeCountry";
