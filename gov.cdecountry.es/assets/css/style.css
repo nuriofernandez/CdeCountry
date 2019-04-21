@@ -19,7 +19,7 @@ main {
 }
 
 nav.navbar {
-  box-shadow: 3px 2px 11px #333;
+  box-shadow: 3px 2px 11px #000;
   font-size: 1.2rem;
 }
 
@@ -45,7 +45,7 @@ body {
 }
 
 .footer {
-  box-shadow: 0px -2px 11px #333;
+  box-shadow: 0px -2px 11px #000;
   position: absolute;
   bottom: 0;
   margin-top: 16px;
@@ -171,7 +171,8 @@ iframe.nofullScreen {
 
 iframe.mapfullScreen {
   width: 100%;
-  height: calc( 100vh - 165px);
+  min-height: 624px;
+  height: calc( 100vh - 166px);
 }
 
 /* Election's area */
