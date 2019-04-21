@@ -3,4 +3,4 @@
 $head['title'] = "Mapa";
 $site['active-tab'] = "tab-map";
 ?>
-<iframe id="tvframe" src="https://new.cdecountry.es/frames/Mapa/" class="nofullScreen"></iframe>
+<iframe id="tvframe" src="https://new.cdecountry.es/frames/Mapa/" class="mapfullScreen"></iframe>

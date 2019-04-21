@@ -8,7 +8,7 @@ html {
 }
 
 body {
-  margin-bottom: 95px;
+  margin-bottom: 53px;
   font-family: 'Montserrat', sans-serif;
   background-color: #f9f9f9;
 }
@@ -167,6 +167,11 @@ iframe.fullScreen {
 iframe.nofullScreen {
   width: 100%;
   height: 624px;
+}
+
+iframe.nofullScreen {
+  width: 100%;
+  height: calc( 100vh - 165px);
 }
 
 /* Election's area */
