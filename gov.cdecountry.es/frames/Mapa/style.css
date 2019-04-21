@@ -1,9 +1,10 @@
-body{
+html, body{
     border: 0;
     margin: 0;
 }
 
 #mapframe{
     height: 100%;
+    border: 0;
     width: 100%;
 }
