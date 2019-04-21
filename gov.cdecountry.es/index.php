@@ -52,9 +52,6 @@ ob_end_clean();
 						<li id="tab-map"  class="nav-item">
 							<a class="nav-link" href="https://new.cdecountry.es/mapa"><i class="fas fa-map"></i> <text id="tab-map-title">Mapa</text></a>
 						</li>
-						<li id="tab-press" class="nav-item">
-							<a class="nav-link" href="https://new.cdecountry.es/press"><i class="far fa-newspaper"></i> <text id="tab-press-title">Prensa</text></a>
-						</li>
 						<li id="tab-login" class="nav-item">
 							<a class="nav-link" href="https://new.cdecountry.es/login"><i class="fas fa-user-circle"></i> <text id="tab-login-title">Identificación</text></a>
 						</li>

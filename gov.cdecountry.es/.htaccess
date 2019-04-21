@@ -39,6 +39,7 @@ Header merge  Vary "Origin"
     # DynamicSite
     RewriteRule ^dynamic/$ sites/home.php [NC,L]
     RewriteRule ^dynamic/tv$ sites/tv.php [NC,L]
+    RewriteRule ^dynamic/map$ sites/mapa.php [NC,L]
     RewriteRule ^dynamic/elections$ sites/elections.php [NC,L]
     RewriteRule ^dynamic/login$ sites/login.php [NC,L]
     RewriteRule ^dynamic/press$ sites/press.php [NC,L]

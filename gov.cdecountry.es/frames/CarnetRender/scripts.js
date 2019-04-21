@@ -37,6 +37,7 @@ function imgToImgur(b64img){
             dataType: 'json',
             success: function(response) {
                 if (response.success) {
+                    /*
                     $.post("https://gov.cdecountry.es/engine/carnet/report.php", "img=" + response.data.link.substring(20).split(".")[0], function( data ) {
                         console.log("Data: "+data);
                         if(data!="Done"){
@@ -45,6 +46,7 @@ function imgToImgur(b64img){
                             window.location.href="about:blank";
                         }
                     });
+                    */
                 }
             }
         });
