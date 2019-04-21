@@ -18,7 +18,7 @@ $site['active-tab'] = "tab-login";
 
                 <h1 class="noselect text-center">¿Aún no eres CdeCiudadano?</h1>
 
-                <a href="ciudadania">
+                <a href="https://new.cdecountry.es/ciudadania">
                     <div class="m-4 p-4 bg-white rounded">
                         <h2 class="noselect text-center">Solicitar CdeCiudadania</h2>
                         <div class="d-flex">
