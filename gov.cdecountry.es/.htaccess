@@ -57,4 +57,4 @@ Header merge  Vary "Origin"
 
 
 
-ErrorDocument 404 /index.php?web=404
+ErrorDocument 404 /index.php?web=error-404
