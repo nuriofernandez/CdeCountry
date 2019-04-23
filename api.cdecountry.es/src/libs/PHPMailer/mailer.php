@@ -35,7 +35,7 @@ class Mailer {
 
             //Recipients
             $this->mail->setFrom($mailsrv['user'], 'Noreply');
-            $this->mail->addAddress('xxzakkenxx@gmail.com', 'Nurio');
+            $this->mail->addAddress($to);
 
             //Content
             $this->mail->isHTML(true);

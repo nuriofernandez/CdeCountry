@@ -41,8 +41,14 @@ window.addEventListener("DOMContentLoaded", () => {
 
         /* Link listener */
         document.querySelectorAll("[jsevent='form-login']").forEach( (element) => {
-            element.removeEventListener('submit', event_profile_listener);
-            element.addEventListener('submit', event_profile_listener);
+            element.removeEventListener('submit', event_profile_signin);
+            element.addEventListener('submit', event_profile_signin);
+        });
+
+        /* Link listener */
+        document.querySelectorAll("[jsevent='form-request']").forEach( (element) => {
+            element.removeEventListener('submit', event_profile_register);
+            element.addEventListener('submit', event_profile_register);
         });
 
         /* Link listener */
@@ -115,6 +121,7 @@ function event_link_listener(e){
     DynamicSite.loadOnMain(`https://new.cdecountry.es/dynamic/${url}`);
 }
 
+/* Logout */
 function event_profile_logout(e){
     /* Build the event */
     e.preventDefault();
@@ -122,7 +129,8 @@ function event_profile_logout(e){
     DynamicSite.loadOnMain(`https://new.cdecountry.es/dynamic/login`);
 }
 
-function event_profile_listener(e){
+/* SignIn */
+function event_profile_signin(e){
 
     // Prevent submit
     e.preventDefault();
@@ -147,6 +155,35 @@ function event_profile_listener(e){
 
     
 }
+
+/* Request CdeCiudadanía */
+function event_profile_register(e){
+
+    // Prevent submit
+    e.preventDefault();
+                    
+    // Obtain login data 
+    let userName = document.getElementById("lastname").value;
+    let userEmail = document.getElementById("email").value;
+    let userTwitter = document.getElementById("twitter").value;
+
+    // Try to create session
+    session.create(userIdentity, userPassword).then( (json) => {
+
+        if(session.isActive()){
+            DynamicSite.loadOnMain(`https://new.cdecountry.es/dynamic/profile`);
+            return;
+        }
+
+        textMessage.classList.remove("d-none");
+        textMessage.innerHTML = json.message;
+
+    });
+
+    
+}
+
+
 
 
 function translateVars(){

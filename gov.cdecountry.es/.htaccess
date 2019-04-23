@@ -34,6 +34,7 @@ Header merge  Vary "Origin"
     
     RewriteRule ^cuenta/restablecer$ index.php?web=password-request [NC,L]
     RewriteRule ^cuenta/ajustes$ index.php?web=account-settings [NC,L]
+    RewriteRule ^cuenta/pendiente$ index.php?web=ciudadania-aceptada [NC,L]
     RewriteRule ^ciudadania$ index.php?web=ciudadania-request [NC,L]
 
     # DynamicSite
