@@ -15,6 +15,7 @@
     RewriteRule ^get/profile/(.*)$ src/profile-lookup.php?id=$1 [NC,L]
     RewriteRule ^session/validate$ src/validate-session.php [NC,L]
     RewriteRule ^session/create$ src/create-session.php [NC,L]
+    RewriteRule ^session/register$ src/request-ciudadania.php [NC,L]
     
 
 </IfModule>
