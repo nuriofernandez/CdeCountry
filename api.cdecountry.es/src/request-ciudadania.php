@@ -28,11 +28,13 @@ $prepare->execute();
 if($prepare->rowCount() != 0) die( json_encode( array( "error" => "register_error", "email" => $request['email'], "message" => "Este correo ya está registrado." ) ) );
 
 // Generate account data
-$rndString = md5( rand(9999),99999 );
+$rndString = md5( rand(1,9999),99999 );
 $password = substr(md5($rndString . microtime(true)),16);
 $salt = md5($rndString . microtime(true));
 $sha = hash('sha256', $salt . hash('sha256', $password . md5($salt)) . $salt);
 $token_verify = md5($rndString . $request['email']);
+
+print_r($request);
 
 // Insert account data onto DB
 $prepare = $nlsql->getPDO()->prepare("INSERT INTO `ciudadanos`(`verify_token`,`password`,`pass_salt`,`nombre`, `email`".(isset($_POST['twitter']) ? ",`twitter`" : "").") VALUES (:verify, :pass,:salt,:name,:mail".(isset($_POST['twitter']) ? ",:twitter" : "").")");
@@ -52,7 +54,7 @@ $to      = $_POST['email'];
 $subject = '¡Su solicitud de CdeCiudanía fue aceptada!';
 
 // Obtain html message from file
-$htmlMessage = file_get_contents("https://api.cdecountry.es/mails/registered.html");
+$htmlMessage = file_get_contents("https://new.cdecountry.es/assets/mails/verification.html");
 
 // Replace variables of the message
 $htmlMessage = preg_replace('/%var_name%/m', $request['name'], $htmlMessage);
