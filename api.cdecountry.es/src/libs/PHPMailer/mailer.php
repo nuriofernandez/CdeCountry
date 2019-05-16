@@ -32,6 +32,7 @@ class Mailer {
             $this->mail->Password = $mailsrv['password'];
             $this->mail->SMTPSecure = 'tls';
             $this->mail->Port = 587;
+            $this->mail->CharSet = "utf-8";
 
             //Recipients
             $this->mail->setFrom($mailsrv['user'], 'Noreply');
