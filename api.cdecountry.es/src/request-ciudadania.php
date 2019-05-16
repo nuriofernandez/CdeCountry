@@ -34,8 +34,6 @@ $salt = md5($rndString . microtime(true));
 $sha = hash('sha256', $salt . hash('sha256', $password . md5($salt)) . $salt);
 $token_verify = md5($rndString . $request['email']);
 
-print_r($request);
-
 // Insert account data onto DB
 $prepare = $nlsql->getPDO()->prepare("INSERT INTO `ciudadanos`(`verify_token`,`password`,`pass_salt`,`nombre`, `email`".(isset($request['twitter']) ? ",`twitter`" : "").") VALUES (:verify, :pass,:salt,:name,:mail".(isset($request['twitter']) ? ",:twitter" : "").")");
 $prepare->bindParam(":name", $request['name'], PDO::PARAM_STR, 100);
@@ -69,6 +67,6 @@ $textMessage = strip_tags($htmlMessage);
 $mail = new Mailer($to, $subject, $htmlMessage, $textMessage);
 
 // Print the response
-print( json_encode( array( "sended" => "true" ) ) );
+print( json_encode( array( "registered" => "true" ) ) );
 
 ?>
