@@ -17,7 +17,7 @@ if(!(isset($_POST['json']))) die( json_encode( array( "error" => "invalid_reques
 $request = json_decode( $_POST['json'] , true );
 
 // Request params validation
-if( !(isset($request['name']) || !(isset($request['email']) ) die( json_encode( array( "error" => "invalid_request_params") ) );
+if( !(isset($request['name'])) || !(isset($request['email'])) ) die( json_encode( array( "error" => "invalid_request_params") ) );
 
 // Verify if email is already used
 $prepare = $nlsql->getPDO()->prepare("SELECT `id`, `email`, `password`, `pass_salt` FROM `ciudadanos` WHERE `email`=:email");
@@ -28,7 +28,7 @@ $prepare->execute();
 if($prepare->rowCount() != 0) die( json_encode( array( "error" => "register_error", "email" => $request['email'], "message" => "Este correo ya está registrado." ) ) );
 
 // Generate account data
-$rndString = md5( rand(9999),99999) );
+$rndString = md5( rand(9999),99999 );
 $password = substr(md5($rndString . microtime(true)),16);
 $salt = md5($rndString . microtime(true));
 $sha = hash('sha256', $salt . hash('sha256', $password . md5($salt)) . $salt);
