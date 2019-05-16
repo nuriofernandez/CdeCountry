@@ -134,14 +134,21 @@ function event_profile_signin(e){
 
     // Prevent submit
     e.preventDefault();
-                    
+    
+    //Obtain login form and set opacity to "load"
+    let textMessage = document.getElementById("invalid-login-text");
+    let form = document.querySelector("form[jsevent='form-login']");
+    form.style.opacity = 0.3;
+
     // Obtain login data 
     let userIdentity = document.getElementById("user-id").value;
     let userPassword = document.getElementById("user-pass").value;
-    let textMessage = document.getElementById("invalid-login-text");
 
     // Try to create session
     session.create(userIdentity, userPassword).then( (json) => {
+
+        // Set opacity to "normal"
+        form.style.opacity = 1;
 
         if(session.isActive()){
             DynamicSite.loadOnMain(`https://new.cdecountry.es/dynamic/profile`);
@@ -162,21 +169,29 @@ function event_profile_register(e){
     // Prevent submit
     e.preventDefault();
                     
-    // Obtain login data 
+    // Obtain register form and set opacity to "load"
+    let textMessage = document.getElementById("invalid-register-text");
+    let form = document.querySelector("form[jsevent='form-request']");
+    form.style.opacity = 0.3;
+
+    // Obtain register data 
     let userName = document.getElementById("lastname").value;
     let userEmail = document.getElementById("email").value;
     let userTwitter = document.getElementById("twitter").value;
 
+
     // Register new account
     session.register(userName, userEmail, userTwitter).then( (json) => {
 
-        if(json.registered == true){
-            DynamicSite.loadOnMain(`https://new.cdecountry.es/dynamic/profile`);
+        form.style.opacity = 1;
+
+        if(json.registered != "true"){
+            textMessage.classList.remove("d-none");
+            textMessage.innerHTML = json.message;
             return;
         }
 
-        textMessage.classList.remove("d-none");
-        textMessage.innerHTML = json.message;
+        DynamicSite.loadOnMain(`https://new.cdecountry.es/dynamic/profile`);
 
     });
 

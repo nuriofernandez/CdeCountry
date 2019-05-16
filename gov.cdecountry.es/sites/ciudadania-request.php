@@ -18,6 +18,10 @@ $site['active-tab'] = "tab-login";
             <form jsevent="form-request" id="request-ciudadania-form" method="POST" action="#">
 
                 <div class="col-md-12 mb-3 ml-0">
+                    <small id="invalid-login-text" class="text-danger d-none">No ha sido posible solicitar la CdeCiudadanía.</small>
+                </div>
+
+                <div class="col-md-12 mb-3 ml-0">
                     <label class="noselect" for="lastname">Nombre <small class="vote-data-requiered">* Requerido</small></label>
                     <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Nombre Apellido" value="" required="" autocomplete="name">
                     <div class="invalid-feedback">Un nombre de usuario es requerido.</div>
