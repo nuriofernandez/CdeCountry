@@ -37,20 +37,20 @@ $token_verify = md5($rndString . $request['email']);
 print_r($request);
 
 // Insert account data onto DB
-$prepare = $nlsql->getPDO()->prepare("INSERT INTO `ciudadanos`(`verify_token`,`password`,`pass_salt`,`nombre`, `email`".(isset($_POST['twitter']) ? ",`twitter`" : "").") VALUES (:verify, :pass,:salt,:name,:mail".(isset($_POST['twitter']) ? ",:twitter" : "").")");
+$prepare = $nlsql->getPDO()->prepare("INSERT INTO `ciudadanos`(`verify_token`,`password`,`pass_salt`,`nombre`, `email`".(isset($request['twitter']) ? ",`twitter`" : "").") VALUES (:verify, :pass,:salt,:name,:mail".(isset($request['twitter']) ? ",:twitter" : "").")");
 $prepare->bindParam(":name", $request['name'], PDO::PARAM_STR, 100);
 $prepare->bindParam(":mail", $request['email'], PDO::PARAM_STR, 400);
 $prepare->bindParam(":pass", $sha, PDO::PARAM_STR, 128);
 $prepare->bindParam(":salt", $salt, PDO::PARAM_STR, 32);
 $prepare->bindParam(":verify", $token_verify, PDO::PARAM_STR, 32);
 
-if(isset($_POST['twitter']))$prepare->bindParam(":twitter", $request['twitter'], PDO::PARAM_STR, 32);
+if(isset($request['twitter']))$prepare->bindParam(":twitter", $request['twitter'], PDO::PARAM_STR, 32);
 $prepare->execute();
 
 /* Email user */
 
 // Headers
-$to      = $_POST['email'];
+$to      = $request['email'];
 $subject = '¡Su solicitud de CdeCiudanía fue aceptada!';
 
 // Obtain html message from file
