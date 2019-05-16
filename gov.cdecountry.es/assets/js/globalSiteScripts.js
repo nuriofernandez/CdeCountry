@@ -187,7 +187,7 @@ function event_profile_register(e){
 
         if(json.registered != "true"){
             textMessage.classList.remove("d-none");
-            textMessage.innerHTML = json.message;
+            textMessage.innerHTML = `No ha sido posible solicitar la CdeCiudadanía. ${json.message}`;
             return;
         }
 

@@ -18,7 +18,7 @@ $site['active-tab'] = "tab-login";
             <form jsevent="form-request" id="request-ciudadania-form" method="POST" action="#">
 
                 <div class="col-md-12 mb-3 ml-0">
-                    <small id="invalid-login-text" class="text-danger d-none">No ha sido posible solicitar la CdeCiudadanía.</small>
+                    <small id="invalid-register-text" class="text-danger d-none">No ha sido posible solicitar la CdeCiudadanía.</small>
                 </div>
 
                 <div class="col-md-12 mb-3 ml-0">
