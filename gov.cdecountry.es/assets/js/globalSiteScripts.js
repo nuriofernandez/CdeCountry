@@ -191,7 +191,7 @@ function event_profile_register(e){
             return;
         }
 
-        DynamicSite.loadOnMain(`https://new.cdecountry.es/dynamic/profile`);
+        DynamicSite.loadOnMain(`https://new.cdecountry.es/cuenta/pendiente`);
 
     });
 
