@@ -25,10 +25,8 @@ class Mailer {
         try {
             //Disable debug
             $this->mail->SMTPDebug = 0;
-            $this->mail->do_debug = 0;
 
             //Server settings
-            $this->mail->SMTPDebug = 2;
             $this->mail->isSMTP();
             $this->mail->Host = $mailsrv['host'];
             $this->mail->SMTPAuth = true;
