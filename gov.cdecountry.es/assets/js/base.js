@@ -482,6 +482,39 @@ class CSession {
         });
     }
 
+    /**
+     * 
+     */
+    register(name, email, twitter) {
+
+        // Store this on a _this
+        var _this = this;
+
+        // Create proccess
+        return new Promise((resolve, stop) => {
+
+            // Call the api
+            let api = ApiCall.postCall(`https://api.cdecountry.es/session/register`, {name, email, twitter});
+            api.then((json) => {
+                if( json.error == null ) {
+                    
+                    // Build the session
+                    _this.sessionId = json.token;
+                    _this.profile = new Profile(json.identity);
+                    _this.sessionValid = true;
+                    Cookies.set("session-id", json.token);
+                    if(_this.callbackCollection.hasOwnProperty("created")) _this.callbackCollection['created'](json);
+                    resolve(json);
+                    return;
+                }
+                
+                console.log(json.message);
+                resolve(json);
+            });
+
+        });
+    }
+
 
     isActive() {
         return this.sessionValid == true;

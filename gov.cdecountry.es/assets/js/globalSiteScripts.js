@@ -168,7 +168,17 @@ function event_profile_register(e){
     let userTwitter = document.getElementById("twitter").value;
 
     // Register new account
-    
+    session.register(userName, userEmail, userTwitter).then( (json) => {
+
+        if(session.isActive()){
+            DynamicSite.loadOnMain(`https://new.cdecountry.es/dynamic/profile`);
+            return;
+        }
+
+        textMessage.classList.remove("d-none");
+        textMessage.innerHTML = json.message;
+
+    });
 
     
 }
