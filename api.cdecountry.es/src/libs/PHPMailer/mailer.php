@@ -23,6 +23,10 @@ class Mailer {
         global $mailsrv;
         $this->mail = new PHPMailer(true);
         try {
+            //Disable debug
+            $this->mail->SMTPDebug = false;
+            $this->mail->do_debug = 0;
+
             //Server settings
             $this->mail->SMTPDebug = 2;
             $this->mail->isSMTP();
