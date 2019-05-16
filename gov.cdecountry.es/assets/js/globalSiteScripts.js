@@ -170,7 +170,7 @@ function event_profile_register(e){
     // Register new account
     session.register(userName, userEmail, userTwitter).then( (json) => {
 
-        if(session.isActive()){
+        if(json.registered == true){
             DynamicSite.loadOnMain(`https://new.cdecountry.es/dynamic/profile`);
             return;
         }
