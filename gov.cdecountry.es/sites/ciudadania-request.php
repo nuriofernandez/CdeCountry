@@ -31,7 +31,7 @@ $site['active-tab'] = "tab-login";
                     <label class="noselect" for="email">Email <small class="vote-data-requiered">* Requerido</small></label>
                     <input type="email" class="form-control" id="email" name="email" placeholder="email@email.com" value="" pattern="^((?!@hotmail)(?!@outlook)(?!@live).)*$" required="" title="Por favor introduce una dirección de correo que no sea @hotmail, @outlook o @live">
                     <div class="invalid-feedback">Una direccion de email es requerida.</div>
-                    <small><b>Nota:</b> Recomendamos usar un correo <b>Gmail</b>. Algunos servidores de correo estan bloqueando nuestros correos. Entre ellos <b>outlook, hotmail y live</b>.</small>
+                    <small><b>Nota:</b> Recibirá un enlace para verificar su correo, es obligatorio proporcionar un correo valido.</small>
                 </div>
 
                 <div class="col-md-12 mb-3 ml-0">
