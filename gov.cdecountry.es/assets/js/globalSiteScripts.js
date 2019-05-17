@@ -69,6 +69,11 @@ window.addEventListener("DOMContentLoaded", () => {
 
     DynamicSite.updateCurrentTab();
 
+    // Allow navigation
+    window.addEventListener('popstate', function(event) {
+        history.go();
+    });
+
 });
 
 function updateNavbar(){
