@@ -37,7 +37,7 @@ class Mailer {
             $this->mail->CharSet = "utf-8";
 
             //Recipients
-            $this->mail->setFrom($mailsrv['user'], 'Noreply');
+            $this->mail->setFrom($mailsrv['user'], 'Gobierno de CdeCountry');
             $this->mail->addAddress($to);
 
             //Content
