@@ -222,30 +222,30 @@ function translateVars(){
 
             let profile = new Profile(profileId);
             
-            if( profile.isVerified() ) profile.runOnLoad( () => {
-        
+            profile.runOnLoad( () => {
+
                 // Render Id number
                 document.querySelectorAll("[textreplaceinner='profile-id'").forEach( (element) => {
-                    if(profile.isReady()) element.innerHTML = profile.getIdentity();
+                    if(profile.isVerified()) element.innerHTML = profile.getIdentity();
                 });
         
                 // Render name
                 document.querySelectorAll("[textreplaceinner='profile-name'").forEach( (element) => {
-                    if(profile.isReady()) element.innerHTML = profile.getName();
+                    if(profile.isVerified()) element.innerHTML = profile.getName();
                 });
         
                 // Render carnet photo
                 document.querySelectorAll("[srcreplace='profile-carnet'").forEach( (element) => {
                     element.removeEventListener("error", () => element.src = "https://i.imgur.com/aZBWRqE.png" );
                     element.addEventListener("error", () => element.src = "https://i.imgur.com/aZBWRqE.png" );
-                    if(profile.isReady()) element.src = profile.getCarnet();
+                    if(profile.isVerified()) element.src = profile.getCarnet();
                 });
         
                 // Render profile photo
                 document.querySelectorAll("[srcreplace='profile-photo'").forEach( (element) => {
                     element.removeEventListener("error", () => element.src = "https://i.imgur.com/fNWS4Bt.png" );
                     element.addEventListener("error", () => element.src = "https://i.imgur.com/fNWS4Bt.png" );
-                    if(profile.isReady()) element.src = profile.getTwitterProfilePhoto();
+                    if(profile.isVerified()) element.src = profile.getTwitterProfilePhoto();
                 });
         
             });
