@@ -13,6 +13,10 @@ Header merge  Vary "Origin"
     RewriteRule ^mapa$ index.php?web=mapa [NC,L]
     RewriteRule ^tv$ index.php?web=tv [NC,L]
 
+    RewriteRule ^frames/CarnetRender(.*)$ /index.php?web=error-404 [NC,L]
+    RewriteRule ^frames/CarnetRender/(.*)$ frames/CarnetRender/index.php?cdec_id=$1 [NC,L]
+
+
     # Press sites
     RewriteRule ^press/post-editor index.php?web=post-editor [QSA,NC,L]
     RewriteRule ^press/([^/]+)/([^/]+)$  /index.php?web=post&entryid=$1 [NC,L]
@@ -51,7 +55,6 @@ Header merge  Vary "Origin"
     RewriteRule ^dynamic/ciudadania$ sites/ciudadania-request.php [NC,L]
     RewriteRule ^dynamic/cuenta/restablecer$ sites/password-request.php [NC,L]
     RewriteRule ^dynamic/cuenta/ajustes$ sites/account-settings.php [NC,L]
-
 
 </IfModule>
 
