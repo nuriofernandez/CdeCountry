@@ -1,7 +1,7 @@
 <?php
 
 // Prevent null input
-$cid = isset($_COOKIE['cdec_id']) ? $_COOKIE['cdec_id'] : null;
+$cid = isset($_GET['cdec_id']) ? $_GET['cdec_id'] : null;
 if(strlen($cid) != 12) die("ERROR: CdeCarnet invalido.");
 if($cid == null) die("ERROR: CdeCarnet inexistente.");
 
