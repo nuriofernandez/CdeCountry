@@ -19,7 +19,7 @@ $request = json_decode( $_POST['json'] , true );
 if( !(isset($request['identity'])) || !(isset($request['password'])) ) die( json_encode( array( "error" => "invalid_request_params") ) );
 
 // The SQL query
-$prepare = $nlsql->getPDO()->prepare("SELECT `id`, `email`, `password`, `pass_salt` FROM `ciudadanos` WHERE `email`=:identificator OR `id` = :identificator");
+$prepare = $nlsql->getPDO()->prepare("SELECT `id`, `email`, `password`, `carnet_png`, `pass_salt` FROM `ciudadanos` WHERE `email`=:identificator OR `id` = :identificator");
 $prepare->bindParam(":identificator", $request['identity'], PDO::PARAM_STR, 400);
 $prepare->execute();
 
@@ -34,6 +34,10 @@ $hashedCredential = hash('sha256', $userdata['pass_salt'] . hash('sha256', $requ
 
 // Validate user password hashes
 if($hashedCredential != $userdata['password']) die( json_encode( array( "error" => "authentification_error", "message" => "La contraseña no es valida." ) ) );
+
+// Validate user verification status
+if($userdata['carnet_png'] == null) die( json_encode( array( "error" => "authentification_error", "message" => "Esta cuenta no está verificada." ) ) );
+
 
 // Create new session variables
 $session = [];
