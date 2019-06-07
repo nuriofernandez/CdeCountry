@@ -1,9 +1,10 @@
+var identity;
 
 /* Register on load function */
 window.addEventListener('load', () => {
 
     // Get identity number
-    var identity = document.getElementById("identity").innerText;
+    identity = document.getElementById("identity").innerText;
 
     // Build profile QRCode
     var qrContent = "https://gov.cdecountry.es/qrcarnet/" + identity;
@@ -42,13 +43,15 @@ function imgToImgur(b64img){
                 if (response.success) {
 
                     // Call the api
-                    var imgurId = response.data.link.substring(20).split(".")[0];
+                    var image = response.data.link.substring(20).split(".")[0];
+                    let token = identity;
+                    
                     let api = ApiCall.postCall(`https://api.cdecountry.es/session/verify`, {token, image});
                     api.then((json) => {
                         console.log(json);
                         resolve(json);
                     });
-                    
+
                 }
             }
         });
