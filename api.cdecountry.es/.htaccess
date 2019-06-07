@@ -16,6 +16,7 @@
     RewriteRule ^session/validate$ src/validate-session.php [NC,L]
     RewriteRule ^session/create$ src/create-session.php [NC,L]
     RewriteRule ^session/register$ src/request-ciudadania.php [NC,L]
+    RewriteRule ^session/verify$ src/account-verification.php [NC,L]
     
 
 </IfModule>
