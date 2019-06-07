@@ -13,8 +13,6 @@ Header merge  Vary "Origin"
     RewriteRule ^mapa$ index.php?web=mapa [NC,L]
     RewriteRule ^tv$ index.php?web=tv [NC,L]
 
-    RewriteRule ^frames/CarnetRender/(.*)$ frames/CarnetRender/index.php?cdec_id=$1 [NC,L]
-
     # Press sites
     RewriteRule ^press/post-editor index.php?web=post-editor [QSA,NC,L]
     RewriteRule ^press/([^/]+)/([^/]+)$  index.php?web=post&entryid=$1 [NC,L]
@@ -38,6 +36,11 @@ Header merge  Vary "Origin"
     RewriteRule ^cuenta/ajustes$ index.php?web=account-settings [NC,L]
     RewriteRule ^cuenta/pendiente$ index.php?web=ciudadania-aceptada [NC,L]
     RewriteRule ^ciudadania$ index.php?web=ciudadania-request [NC,L]
+
+
+    RewriteRule ^verification/carnet/([0-9]{12})$ frames/CarnetRender/index.php?cdec_id=$1 [NC,L]
+    RewriteRule ^verification/([a-zA-Z0-9]{32})$ index.php?web=ciudadania-verification.php [NC,L]
+
 
     # DynamicSite
     RewriteRule ^dynamic/$ sites/home.php [NC,L]
