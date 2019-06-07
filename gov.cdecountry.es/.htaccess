@@ -56,6 +56,7 @@ Header merge  Vary "Origin"
     RewriteRule ^dynamic/ciudadania$ sites/ciudadania-request.php [NC,L]
     RewriteRule ^dynamic/cuenta/restablecer$ sites/password-request.php [NC,L]
     RewriteRule ^dynamic/cuenta/ajustes$ sites/account-settings.php [NC,L]
+    RewriteRule ^dynamic/cverification/([a-zA-Z0-9]{32})$ sites/ciudadania-verification.php [NC,L]
 
 </IfModule>
 
