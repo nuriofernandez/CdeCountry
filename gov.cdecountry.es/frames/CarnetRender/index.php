@@ -17,6 +17,8 @@ if($cid == null) die("ERROR: CdeCarnet inexistente.");
       <script type="text/javascript" src="https://gov.cdecountry.es/inc/js/jquery.qrcode.min.js"></script>
       <script type="text/javascript" src="https://new.cdecountry.es/frames/CarnetRender/scripts.js"></script>
       
+      <script type="text/javascript" src="https://new.cdecountry.es/assets/js/base.js"></script>
+
    </head>
    <body>
 

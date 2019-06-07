@@ -375,6 +375,15 @@ class Profile {
         return perms.toString().substr(slot-1, 1) == 1;
     }
 
+    /**
+     * 
+     * @param {*} slot 
+     */
+    isVerified(slot){
+        if(!this.isReady()) return; // Stop when the api didn't responded
+        return this.data.carnet_png != null;
+    }
+
 }
 
 /*** ///////////////////////////////////////////////////////////////// ***/

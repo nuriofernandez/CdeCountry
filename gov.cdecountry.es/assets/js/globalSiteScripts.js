@@ -196,6 +196,7 @@ function event_profile_register(e){
             return;
         }
 
+        // Then redirect
         DynamicSite.loadOnMain(`https://new.cdecountry.es/cuenta/pendiente`);
 
     });
@@ -208,31 +209,38 @@ function event_profile_register(e){
 
 function translateVars(){
 
+    // When profileParam is set
     let profileParam = document.querySelector("param[name='profileId']");
     if(profileParam){
 
+        // Get profile Id
         let profileId = profileParam.value;
-        if(profileId == 0 && session.isActive() ) profileId = session.getProfile().getIdentity();
-
-        if(profileId != 0){
-            let profile = new Profile(profileId);
+        if( profileId == 0 && session.isActive() && profile.isVerified() ) profileId = session.getProfile().getIdentity();
         
+        // When profile Id is not null
+        if(profileId != 0){
+
+            let profile = new Profile(profileId);
             profile.runOnLoad( () => {
         
+                // Render Id number
                 document.querySelectorAll("[textreplaceinner='profile-id'").forEach( (element) => {
                     if(profile.isReady()) element.innerHTML = profile.getIdentity();
                 });
         
+                // Render name
                 document.querySelectorAll("[textreplaceinner='profile-name'").forEach( (element) => {
                     if(profile.isReady()) element.innerHTML = profile.getName();
                 });
         
+                // Render carnet photo
                 document.querySelectorAll("[srcreplace='profile-carnet'").forEach( (element) => {
                     element.removeEventListener("error", () => element.src = "https://i.imgur.com/aZBWRqE.png" );
                     element.addEventListener("error", () => element.src = "https://i.imgur.com/aZBWRqE.png" );
                     if(profile.isReady()) element.src = profile.getCarnet();
                 });
         
+                // Render profile photo
                 document.querySelectorAll("[srcreplace='profile-photo'").forEach( (element) => {
                     element.removeEventListener("error", () => element.src = "https://i.imgur.com/fNWS4Bt.png" );
                     element.addEventListener("error", () => element.src = "https://i.imgur.com/fNWS4Bt.png" );
@@ -243,6 +251,7 @@ function translateVars(){
         }
     }
     
+    // When session is active
     if( session.isActive() ){
 
         document.querySelectorAll("[textreplaceinner='session-id'").forEach( (element) => {
