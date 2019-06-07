@@ -36,9 +36,9 @@ Header merge  Vary "Origin"
     RewriteRule ^cuenta/ajustes$ index.php?web=account-settings [NC,L]
     RewriteRule ^cuenta/pendiente$ index.php?web=ciudadania-aceptada [NC,L]
     RewriteRule ^ciudadania$ index.php?web=ciudadania-request [NC,L]
-
-
-    RewriteRule ^verification/([a-zA-Z0-9]{32})$ index.php?web=ciudadania-verification.php?token=$1 [NC,L]
+    RewriteRule ^verification/([a-zA-Z0-9]{32})$ index.php?web=ciudadania-verification?token=$1 [NC,L]
+    
+    # Specials
     RewriteRule ^verification/carnet/([0-9]{12})$ frames/CarnetRender/index.php?cdec_id=$1 [NC,L]
 
 
