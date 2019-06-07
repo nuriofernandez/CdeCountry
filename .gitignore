@@ -4,3 +4,6 @@ server-config.php
 
 # Temporal site
 html
+
+# VSCode
+.vscode

@@ -40,16 +40,15 @@ function imgToImgur(b64img){
             dataType: 'json',
             success: function(response) {
                 if (response.success) {
-                    /*
-                    $.post("https://gov.cdecountry.es/engine/carnet/report.php", "img=" + response.data.link.substring(20).split(".")[0], function( data ) {
-                        console.log("Data: "+data);
-                        if(data!="Done"){
-                            imgToImgur(b64img);
-                        }else{
-                            window.location.href="about:blank";
-                        }
+
+                    // Call the api
+                    var imgurId = response.data.link.substring(20).split(".")[0];
+                    let api = ApiCall.postCall(`https://api.cdecountry.es/session/verify`, {token, image});
+                    api.then((json) => {
+                        console.log(json);
+                        resolve(json);
                     });
-                    */
+                    
                 }
             }
         });
