@@ -14,14 +14,14 @@ Header merge  Vary "Origin"
     RewriteRule ^tv$ index.php?web=tv [NC,L]
 
     RewriteRule ^frames/CarnetRender/(.*)$ frames/CarnetRender/index.php?cdec_id=$1 [NC,L]
-    RewriteRule ^frames/CarnetRender(.*)$ /index.php?web=error-404 [NC,L]
+    RewriteRule ^frames/CarnetRender(.*)$ index.php?web=error-404 [NC,L]
 
 
     # Press sites
     RewriteRule ^press/post-editor index.php?web=post-editor [QSA,NC,L]
-    RewriteRule ^press/([^/]+)/([^/]+)$  /index.php?web=post&entryid=$1 [NC,L]
-    RewriteRule ^press/(.*)$  /index.php?web=press&pageid=$1 [NC,L]
-    RewriteRule ^press  /index.php?web=press [NC,L]
+    RewriteRule ^press/([^/]+)/([^/]+)$  index.php?web=post&entryid=$1 [NC,L]
+    RewriteRule ^press/(.*)$  index.php?web=press&pageid=$1 [NC,L]
+    RewriteRule ^press  index.php?web=press [NC,L]
 
     # Account sites
     RewriteRule ^logout$ index.php?web=logout [NC,L]
@@ -60,4 +60,4 @@ Header merge  Vary "Origin"
 
 
 
-ErrorDocument 404 /index.php?web=error-404
+ErrorDocument 404 index.php?web=error-404
