@@ -215,13 +215,14 @@ function translateVars(){
 
         // Get profile Id
         let profileId = profileParam.value;
-        if( profileId == 0 && session.isActive() && profile.isVerified() ) profileId = session.getProfile().getIdentity();
+        if( profileId == 0 && session.isActive() ) profileId = session.getProfile().getIdentity();
         
         // When profile Id is not null
         if(profileId != 0){
 
             let profile = new Profile(profileId);
-            profile.runOnLoad( () => {
+            
+            if( profile.isVerified() ) profile.runOnLoad( () => {
         
                 // Render Id number
                 document.querySelectorAll("[textreplaceinner='profile-id'").forEach( (element) => {
