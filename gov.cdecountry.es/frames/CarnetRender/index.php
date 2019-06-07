@@ -21,7 +21,7 @@ if($cid == null) die("ERROR: CdeCarnet inexistente.");
    <body>
 
       <div id="carnet" class="container">
-         <img src="https://gov.cdecountry.es/engine/carnet/cdecarnet.png" alt="Norway">
+         <img src="https://new.cdecountry.es/assets/img/carnet/front.png">
          <div id="qrcode" class="bottom-left"></div>
          <div id="identity" class="bottom-right"><?php echo $cid; ?></div>
       </div>
