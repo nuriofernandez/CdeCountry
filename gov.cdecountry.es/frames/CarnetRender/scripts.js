@@ -2,8 +2,11 @@
 /* Register on load function */
 window.addEventListener('load', () => {
 
+    // Get identity number
+    var identity = document.getElementById("identity").innerText;
+
     // Build profile QRCode
-    var qrContent = "https://gov.cdecountry.es/qrcarnet/" + getCookie("cdec_id");
+    var qrContent = "https://gov.cdecountry.es/qrcarnet/" + identity;
     $('#qrcode').qrcode({
         background: "rgba(0, 0, 0, 0)",
         width: 220,
