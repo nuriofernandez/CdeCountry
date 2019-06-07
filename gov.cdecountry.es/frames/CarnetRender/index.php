@@ -1,9 +1,7 @@
 <?php
-
 // Prevent null input
-$cid = isset($_GET['cdec_id']) ? $_GET['cdec_id'] : null;
-if(strlen($cid) != 12) die("ERROR: CdeCarnet invalido.");
-if($cid == null) die("ERROR: CdeCarnet inexistente.");
+$token = isset($_GET['token']) ? $_GET['token'] : null;
+if($token == null || strlen($token) != 32) die("ERROR: Token invalido.");
 ?>
 <html>
    <head>
@@ -22,10 +20,14 @@ if($cid == null) die("ERROR: CdeCarnet inexistente.");
    </head>
    <body>
 
+      <div id="paramsDiv" class="d-none">
+         <param name="token" value="<?php echo $token; ?>" />
+      </div>
+
       <div id="carnet" class="container">
          <img src="https://new.cdecountry.es/assets/img/carnet/front.png">
          <div id="qrcode" class="bottom-left"></div>
-         <div id="identity" class="bottom-right"><?php echo $cid; ?></div>
+         <div id="identity" class="bottom-right"></div>
       </div>
 
    </body>

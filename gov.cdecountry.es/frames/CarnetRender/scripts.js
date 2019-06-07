@@ -4,7 +4,12 @@ var identity;
 window.addEventListener('load', () => {
 
     // Get identity number
-    identity = document.getElementById("identity").innerText;
+    identity = document.querySelector("param[name='token']").value;
+
+    // Print profile Id
+    let zeros = "000000000000";
+    let finalId = zeros.substring(identity.length)+identity;
+    document.getElementById("identity").innerHTML=finalId;
 
     // Build profile QRCode
     var qrContent = "https://gov.cdecountry.es/qrcarnet/" + identity;
