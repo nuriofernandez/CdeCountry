@@ -18,25 +18,29 @@ $request = json_decode( $_POST['json'] , true );
 // Request params validation
 if( !(isset($request['token'])) && !(isset($request['image'])) ) die( json_encode( array( "error" => "invalid_request_params") ) );
 
+// Parse request data
+$tokenId = intval($request['token']);
+
+// Obtain account details
 $prepare = $nlsql->getPDO()->prepare("SELECT `id`, `carnet_png` FROM `ciudadanos` WHERE `verify_token`=:token");
-$prepare->bindParam(":token", $request['token'], PDO::PARAM_STR, 400);
+$prepare->bindParam(":token", $tokenId, PDO::PARAM_STR, 400);
 $prepare->execute();
 
 // If the profile don't exist's response with error message
-if($prepare->rowCount() == 0) die( json_encode( array( "error" => "invalid_session", "requested-session" => $request['token'], "message" => "La session no existe." ) ) );
+if($prepare->rowCount() == 0) die( json_encode( array( "error" => "invalid_session", "requested-session" => $tokenId, "message" => "La session no existe." ) ) );
 
 // Obtain user information from database
 $userdata = $prepare->fetch(PDO::FETCH_ASSOC);
 
-if( $userdata['carnet_png'] != null ) die( json_encode( array( "error" => "invalid_request", "requested-token" => $request['token'], "message" => "Esta cuenta ya está verificada." ) ) );
+if( $userdata['carnet_png'] != null ) die( json_encode( array( "error" => "invalid_request", "requested-token" => $tokenId, "message" => "Esta cuenta ya está verificada." ) ) );
 
 // The SQL query
 $prepare = $nlsql->getPDO()->prepare("UPDATE `ciudadanos` SET `carnet_png`=:imageid WHERE `verify_token`=:token");
-$prepare->bindParam(":token", $request['token'], PDO::PARAM_STR, 32);
+$prepare->bindParam(":token", $tokenId, PDO::PARAM_STR, 32);
 $prepare->bindParam(":imageid", $request['image'], PDO::PARAM_STR, 15);
 $prepare->execute();
 
 // Print the response
-print( json_encode( array( "token" => $request['token'], "image" => $request['image'], "identity" => $userdata['id'] ) ) );
+print( json_encode( array( "token" => $tokenId, "image" => $request['image'], "identity" => $userdata['id'] ) ) );
 
 ?>
