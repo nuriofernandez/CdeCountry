@@ -18,6 +18,8 @@
     RewriteRule ^session/register$ src/request-ciudadania.php [NC,L]
     RewriteRule ^session/verify$ src/account-verification.php [NC,L]
     
+    RewriteRule ^render/carnet/(.*)$ src/render/carnet/index.php?token=$1 [NC,L]
+
 
 </IfModule>
 
