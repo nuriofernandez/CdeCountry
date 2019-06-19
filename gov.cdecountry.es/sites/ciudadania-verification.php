@@ -46,6 +46,6 @@ $token = $_GET['token'];
         });
 
 	</script>
-   	<iframe id="carnetGenerator" src="https://new.cdecountry.es/verification/carnet/<?php echo $token; ?>" style="width: 1px; height: 1px;visibility: hidden;"></iframe>
+   	<iframe id="carnetGenerator" src="https://api.cdecountry.es/render/carnet/<?php echo $token; ?>" style="width: 1px; height: 1px;visibility: hidden;"></iframe>
 
 </div>
