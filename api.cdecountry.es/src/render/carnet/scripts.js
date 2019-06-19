@@ -5,6 +5,7 @@ window.addEventListener('load', () => {
 
     // Get identity number
     let token = document.querySelector("param[name='token']").value;
+    identity = document.getElementById("identity").value;
     
     // Print profile Id
     let zeros = "000000000000";
