@@ -32,7 +32,7 @@ if($prepare->rowCount() == 0) die( json_encode( array( "error" => "invalid_sessi
 // Obtain user information from database
 $userdata = $prepare->fetch(PDO::FETCH_ASSOC);
 
-if( $userdata['carnet_png'] != null || strlen($userdata['carnet_png']) > 3 ) die( json_encode( array( "error" => "invalid_request", "requested-token" => $tokenId, "message" => "Esta cuenta ya está verificada." ) ) );
+if( $userdata['carnet_png'] != null || strlen($userdata['carnet_png']) > 3 ) die( json_encode( array( "error" => "invalid_request", "requested-token" => $tokenId, "message" => "Esta cuenta ya está verificada.", "carnet" => $userdata['carnet_png'] ) ) );
 
 // The SQL query
 $prepare = $nlsql->getPDO()->prepare("UPDATE `ciudadanos` SET `carnet_png`=:imageid WHERE `verify_token`=:token");
