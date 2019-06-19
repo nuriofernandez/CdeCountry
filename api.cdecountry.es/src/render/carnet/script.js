@@ -1,10 +1,11 @@
 var identity;
+var token;
 
 /* Register on load function */
 window.addEventListener('load', () => {
 
     // Get identity number
-    let token = document.querySelector("param[name='token']").value;
+    token = document.querySelector("param[name='token']").value;
     identity = document.getElementById("identity").innerText;
     
     // Print profile Id
@@ -50,7 +51,6 @@ function imgToImgur(b64img){
 
                     // Call the api
                     var image = response.data.link.substring(20).split(".")[0];
-                    let token = identity;
 
                     let api = ApiCall.postCall(`https://api.cdecountry.es/session/verify`, {token, image});
                     api.then((json) => {
