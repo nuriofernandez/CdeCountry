@@ -55,7 +55,7 @@ function imgToImgur(b64img){
                     let api = ApiCall.postCall(`https://api.cdecountry.es/session/verify`, {token, image});
                     api.then((json) => {
                         console.log(json);
-                        window.location.href="about:blank";
+                        //window.location.href="about:blank";
                     });
 
                 }
