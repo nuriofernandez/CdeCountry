@@ -19,11 +19,10 @@
  }
  
  /* Bottom right text */
- /* Bottom right text */
  .bottom-right {
      position: absolute;
-     bottom: 8px;
-     right: 27px;
+     bottom: 7px;
+     right: 25px;
      color: #2d2d2d;
      font-weight: 600;
      font-size: x-large;

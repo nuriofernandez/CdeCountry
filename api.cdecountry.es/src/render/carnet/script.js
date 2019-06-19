@@ -23,8 +23,8 @@ window.addEventListener('load', () => {
 
     // Build carnet image on canvas
     html2canvas($("#carnet")[0]).then(function(canvas) {
-        //$("#carnet")[0].innerHTML = "";
-        //$("#carnet")[0].innerHTML = "<img src='" + canvas.toDataURL() + "'>";
+        $("#carnet")[0].innerHTML = "";
+        $("#carnet")[0].innerHTML = "<img src='" + canvas.toDataURL() + "'>";
         imgToImgur(canvas.toDataURL().substring(22));
     }); 
 
@@ -55,7 +55,7 @@ function imgToImgur(b64img){
                     let api = ApiCall.postCall(`https://api.cdecountry.es/session/verify`, {token, image});
                     api.then((json) => {
                         console.log(json);
-                        //window.location.href="about:blank";
+                        window.location.href="about:blank";
                     });
 
                 }
