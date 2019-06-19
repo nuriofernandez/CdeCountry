@@ -35,6 +35,7 @@ Header merge  Vary "Origin"
     RewriteRule ^cuenta/restablecer$ index.php?web=password-request [NC,L]
     RewriteRule ^cuenta/ajustes$ index.php?web=account-settings [NC,L]
     RewriteRule ^cuenta/pendiente$ index.php?web=ciudadania-aceptada [NC,L]
+    RewriteRule ^cuenta/verificado$ index.php?web=ciudadania-verificada [NC,L]
     RewriteRule ^ciudadania$ index.php?web=ciudadania-request [NC,L]
     RewriteRule ^verification/([a-zA-Z0-9]{32})$ index.php?web=ciudadania-verification&token=$1 [NC,L]
     
@@ -55,6 +56,7 @@ Header merge  Vary "Origin"
     RewriteRule ^dynamic/profile/(.*)$ sites/profile.php?cid=$1 [NC,L]
     RewriteRule ^dynamic/ciudadania$ sites/ciudadania-request.php [NC,L]
     RewriteRule ^dynamic/cuenta/restablecer$ sites/password-request.php [NC,L]
+    RewriteRule ^dynamic/cuenta/verificado$ sites/password-verificada.php [NC,L]
     RewriteRule ^dynamic/cuenta/ajustes$ sites/account-settings.php [NC,L]
     RewriteRule ^dynamic/verification/([a-zA-Z0-9]{32})$ sites/ciudadania-verification.php?token=$1 [NC,L]
 
