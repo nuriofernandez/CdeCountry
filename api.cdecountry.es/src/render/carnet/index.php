@@ -32,7 +32,7 @@ $userdata = $prepare->fetch(PDO::FETCH_ASSOC);
       <script type="text/javascript" src="https://gov.cdecountry.es/inc/js/jquery-3.3.1.js"></script>
       <script type="text/javascript" src="https://gov.cdecountry.es/inc/js/jquery.qrcode.min.js"></script>
       <script type="text/javascript" src="https://new.cdecountry.es/assets/js/base.js"></script>
-      <script type="text/javascript" src="https://api.cdecountry.es/render/carnet/scripts.js"></script>
+      <script type="text/javascript" src="https://api.cdecountry.es/render/carnet/script.js"></script>
 
 
    </head>
