@@ -7,6 +7,7 @@ error_reporting(E_ALL);
 
 // Include the database connection
 require_once $_SERVER['DOCUMENT_ROOT'].'/src/database.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/src/libs/PHPMailer/mailer.php';
 
 // Set the content type
 header('Content-Type: application/json');
