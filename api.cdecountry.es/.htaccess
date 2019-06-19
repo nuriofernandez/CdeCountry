@@ -20,6 +20,7 @@
     
     RewriteRule ^render/carnet/script.js$ src/render/carnet/script.js [NC,L]
     RewriteRule ^render/carnet/style.css$ src/render/carnet/style.css [NC,L]
+    RewriteRule ^render/carnet/front.png$ src/render/carnet/front.png [NC,L]
     RewriteRule ^render/carnet/([a-zA-Z0-9]{32})$ src/render/carnet/index.php?token=$1 [NC,L]
 
 

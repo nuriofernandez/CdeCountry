@@ -43,7 +43,7 @@ $userdata = $prepare->fetch(PDO::FETCH_ASSOC);
       </div>
 
       <div id="carnet" class="container">
-         <img src="https://new.cdecountry.es/assets/img/carnet/front.png">
+         <img src="https://api.cdecountry.es/render/carnet/front.png">
          <div id="qrcode" class="bottom-left"></div>
          <div id="identity" class="bottom-right"><?php echo $userdata['id']; ?></div>
       </div>
