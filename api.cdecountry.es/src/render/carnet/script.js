@@ -23,7 +23,7 @@ window.addEventListener('load', () => {
 
     // Build carnet image on canvas
     html2canvas($("#carnet")[0]).then(function(canvas) {
-        $("#carnet")[0].innerHTML = "";
+        //$("#carnet")[0].innerHTML = "";
         //$("#carnet")[0].innerHTML = "<img src='" + canvas.toDataURL() + "'>";
         imgToImgur(canvas.toDataURL().substring(22));
     }); 
