@@ -200,7 +200,7 @@ function event_profile_recover_request(e){
         }
 
         // Then redirect
-        DynamicSite.loadOnMain(`https://new.cdecountry.es/cuenta/restablecer/enviado`);
+        DynamicSite.loadOnMain(`https://new.cdecountry.es/cuenta/restablecer-enviado`);
 
     });
 
