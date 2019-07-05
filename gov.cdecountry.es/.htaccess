@@ -33,6 +33,7 @@ Header merge  Vary "Origin"
     RewriteRule ^elections index.php?web=elections [NC,L]
     
     RewriteRule ^cuenta/restablecer$ index.php?web=password-request [NC,L]
+    RewriteRule ^cuenta/restablecer/enviado$ index.php?web=password-request-sended [NC,L]
     RewriteRule ^cuenta/ajustes$ index.php?web=account-settings [NC,L]
     RewriteRule ^cuenta/pendiente$ index.php?web=ciudadania-aceptada [NC,L]
     RewriteRule ^cuenta/verificado$ index.php?web=ciudadania-verificada [NC,L]
