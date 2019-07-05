@@ -59,5 +59,3 @@ $mail = new Mailer($to, $subject, $htmlMessage, $textMessage);
 print( json_encode( array( "registered" => "true" ) ) );
 
 ?>
-
-?>
