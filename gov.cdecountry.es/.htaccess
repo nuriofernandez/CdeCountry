@@ -57,6 +57,7 @@ Header merge  Vary "Origin"
     RewriteRule ^dynamic/profile/(.*)$ sites/profile.php?cid=$1 [NC,L]
     RewriteRule ^dynamic/ciudadania$ sites/ciudadania-request.php [NC,L]
     RewriteRule ^dynamic/cuenta/restablecer$ sites/password-request.php [NC,L]
+    RewriteRule ^dynamic/cuenta/restablecer/enviado$ sites/password-request-sended.php [NC,L]
     RewriteRule ^dynamic/cuenta/verificado$ sites/password-verificada.php [NC,L]
     RewriteRule ^dynamic/cuenta/ajustes$ sites/account-settings.php [NC,L]
     RewriteRule ^dynamic/verification/([a-zA-Z0-9]{32})$ sites/ciudadania-verification.php?token=$1 [NC,L]
