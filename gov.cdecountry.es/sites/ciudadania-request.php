@@ -45,7 +45,7 @@ $site['active-tab'] = "tab-login";
                 <div class="col-md-12 mb-1 row">
                    
                     <div class="col-md-8">
-                        <small class="d-block text-left"><b>Los datos proporcionados serán almacenados</b> en tu ficha de CdeCiudadano. <b>Cualquier persona</b> podrá visualizar tu <b>Nombre y Twitter</b>. La dirección de <b>correo electrónico se mantendrá oculta</b> y sera usada únicamente por el sistema. Una vez solicitada la CdeCiudadanía recibirá un correo con su acreditación y su CdeCarnet de identidad.</small>
+                        <small class="d-block text-left"><b>Los datos proporcionados serán almacenados</b> en tu ficha de CdeCiudadano. <b>Cualquier persona</b> podrá visualizar tu <b>Nombre y Twitter</b>. La dirección de <b>correo electrónico se mantendrá oculta</b> y será usada únicamente por el sistema. Una vez solicitada la CdeCiudadanía recibirá un correo con su acreditación y su CdeCarnet de identidad.</small>
                     </div>
                     
                     <div class="col-md-4">
