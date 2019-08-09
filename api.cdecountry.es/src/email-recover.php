@@ -7,6 +7,7 @@ error_reporting(E_ALL);
 
 // Include the database connection
 require_once $_SERVER['DOCUMENT_ROOT'].'/src/database.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/src/libs/PHPMailer/mailer.php';
 
 // Set the content type
 header('Content-Type: application/json');
@@ -16,11 +17,11 @@ if(!(isset($_POST['json']))) die( json_encode( array( "error" => "invalid_reques
 $request = json_decode( $_POST['json'] , true );
 
 // Request params validation
-if( !(isset($request['identity'])) ) die( json_encode( array( "error" => "invalid_request_params") ) );
+if( !(isset($request['email'])) ) die( json_encode( array( "error" => "invalid_request_params") ) );
 
 // The SQL query
 $prepare = $nlsql->getPDO()->prepare("SELECT `id`, `email`, `password`, `pass_salt` FROM `ciudadanos` WHERE `email`=:identificator OR `id` = :identificator");
-$prepare->bindParam(":identificator", $request['identity'], PDO::PARAM_STR, 400);
+$prepare->bindParam(":identificator", $request['email'], PDO::PARAM_STR, 400);
 $prepare->execute();
 
 // If the profile don't exist's response with error message
@@ -56,7 +57,5 @@ $mail = new Mailer($to, $subject, $htmlMessage, $textMessage);
 
 // Print the response
 print( json_encode( array( "registered" => "true" ) ) );
-
-?>
 
 ?>

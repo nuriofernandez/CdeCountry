@@ -52,6 +52,12 @@ window.addEventListener("DOMContentLoaded", () => {
         });
 
         /* Link listener */
+        document.querySelectorAll("[jsevent='password-request-form']").forEach( (element) => {
+            element.removeEventListener('submit', event_profile_recover_request);
+            element.addEventListener('submit', event_profile_recover_request);
+        });
+
+        /* Link listener */
         document.querySelectorAll("[jsevent='event-logout']").forEach( (element) => {
             element.removeEventListener('click', event_profile_logout);
             element.addEventListener('click', event_profile_logout);
@@ -166,6 +172,38 @@ function event_profile_signin(e){
     });
 
     
+}
+
+/* Password restore request */
+function event_profile_recover_request(e){
+
+    // Prevent submit
+    e.preventDefault();
+                    
+    // Obtain request form and set opacity to "load"
+    let textMessage = document.getElementById("invalid-register-text");
+    let form = document.querySelector("form[jsevent='password-request-form']");
+    form.style.opacity = 0.3;
+
+    // Obtain account data 
+    let userEmail = document.getElementById("email").value;
+
+    // Request password restore
+    session.passwordResetRequest(userEmail).then( (json) => {
+
+        form.style.opacity = 1;
+
+        if(json.registered != "true"){
+            textMessage.classList.remove("d-none");
+            textMessage.innerHTML = `No ha sido posible restablecer la CdeCuenta. ${json.message}`;
+            return;
+        }
+
+        // Then redirect
+        DynamicSite.loadOnMain(`https://new.cdecountry.es/cuenta/restablecer/enviado`);
+
+    });
+
 }
 
 /* Request CdeCiudadanía */
