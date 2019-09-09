@@ -34,6 +34,7 @@ Header merge  Vary "Origin"
     
     RewriteRule ^cuenta/restablecer/enviado$ index.php?web=password-restore-sended [NC,L]
     RewriteRule ^cuenta/restablecer$ index.php?web=password-request [NC,L]
+    RewriteRule ^restablecer$ index.php?web=password-restore [NC,L]
     RewriteRule ^cuenta/ajustes$ index.php?web=account-settings [NC,L]
     RewriteRule ^cuenta/pendiente$ index.php?web=ciudadania-aceptada [NC,L]
     RewriteRule ^cuenta/verificado$ index.php?web=ciudadania-verificada [NC,L]
@@ -56,6 +57,7 @@ Header merge  Vary "Origin"
     RewriteRule ^dynamic/profile$ sites/profile.php [NC,L]
     RewriteRule ^dynamic/profile/(.*)$ sites/profile.php?cid=$1 [NC,L]
     RewriteRule ^dynamic/ciudadania$ sites/ciudadania-request.php [NC,L]
+    RewriteRule ^dynamic/restablecer$ sites/password-restore.php [NC,L]
     RewriteRule ^dynamic/cuenta/restablecer$ sites/password-request.php [NC,L]
     RewriteRule ^dynamic/cuenta/restablecer/enviado$ sites/password-restore-sended.php [NC,L]
     RewriteRule ^dynamic/cuenta/verificado$ sites/password-verificada.php [NC,L]

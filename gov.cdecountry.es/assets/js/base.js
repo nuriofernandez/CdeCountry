@@ -546,7 +546,7 @@ class CSession {
         return new Promise((resolve, stop) => {
 
             // Call the api
-            let api = ApiCall.postCall(`https://api.cdecountry.es/session/email-restore`, {email, password, token});
+            let api = ApiCall.postCall(`https://api.cdecountry.es/session/password-restore`, {email, password, token});
             api.then((json) => {
                 console.log(json.message);
                 resolve(json);

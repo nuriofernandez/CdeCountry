@@ -30,6 +30,16 @@ if($prepare->rowCount() == 0) die( json_encode( array( "error" => "authentificat
 // Obtain user information from database
 $userdata = $prepare->fetch(PDO::FETCH_ASSOC);
 
+// Verify restore token
+$token_salt = hash('sha256', md5( substr($userdata['pass_salt'], 0, 10) ) );
+$token_time = round(microtime(true)/60/10);
+
+$restore_token_b = md5( md5($token_salt) . ($token_time+1) );
+$restore_token = md5( md5($token_salt) . ($token_time) );
+if( $request['token'] != $restore_token && $request['token'] != $restore_token_b ){
+    die( json_encode( array( "error" => "authentification_error", "requested-profile" => $request['email'], "message" => "Has superado el tiempo para restablecer la contraseña." ) ) );
+}
+
 // Generate account data
 $rndString = md5( rand(1,9999),99999 );
 $password = $request['password'];
