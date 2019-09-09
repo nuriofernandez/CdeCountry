@@ -534,6 +534,26 @@ class CSession {
         });
     }
 
+    /**
+     * 
+     */
+    passwordReset(email, password, token) {
+
+        // Store this on a _this
+        var _this = this;
+
+        // Create proccess
+        return new Promise((resolve, stop) => {
+
+            // Call the api
+            let api = ApiCall.postCall(`https://api.cdecountry.es/session/email-restore`, {email, password, token});
+            api.then((json) => {
+                console.log(json.message);
+                resolve(json);
+            });
+
+        });
+    }
 
     isActive() {
         return this.sessionValid == true;

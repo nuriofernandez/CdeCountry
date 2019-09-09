@@ -56,7 +56,13 @@ window.addEventListener("DOMContentLoaded", () => {
             element.removeEventListener('submit', event_profile_recover_request);
             element.addEventListener('submit', event_profile_recover_request);
         });
-
+        
+        /* Link listener */
+        document.querySelectorAll("[jsevent='password-restore-form']").forEach( (element) => {
+            element.removeEventListener('submit', event_profile_recover_restore);
+            element.addEventListener('submit', event_profile_recover_restore);
+        });
+        
         /* Link listener */
         document.querySelectorAll("[jsevent='event-logout']").forEach( (element) => {
             element.removeEventListener('click', event_profile_logout);
@@ -201,6 +207,47 @@ function event_profile_recover_request(e){
 
         // Then redirect
         DynamicSite.loadOnMain(`https://new.cdecountry.es/cuenta/restablecer/enviado`);
+
+    });
+
+}
+
+/* Password restore */
+function event_profile_recover_restore(e){
+
+    // Prevent submit
+    e.preventDefault();
+                    
+    // Obtain request form and set opacity to "load"
+    let textMessage = document.getElementById("invalid-restore-text");
+    let form = document.querySelector("form[jsevent='password-restore-form']");
+    form.style.opacity = 0.3;
+
+    // Obtain account data 
+    let userEmail = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+    let confirmPassword = document.getElementById("cpassword").value;
+    let tokenParam = document.querySelector("param[name='restore-token']");
+
+    if(password != confirmPassword){
+        textMessage.classList.remove("d-none");
+        textMessage.innerHTML = `Las contraseñas no coinciden.`;
+        return;
+    }
+
+    // Request password restore
+    session.passwordReset(userEmail, password, tokenParam).then( (json) => {
+
+        form.style.opacity = 1;
+
+        if(json.completed != "true"){
+            textMessage.classList.remove("d-none");
+            textMessage.innerHTML = `No ha sido posible restablecer la CdeCuenta. ${json.message}`;
+            return;
+        }
+
+        // Then redirect
+        DynamicSite.loadOnMain(`https://new.cdecountry.es/cuenta/restablecida`);
 
     });
 
