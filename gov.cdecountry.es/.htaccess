@@ -34,7 +34,7 @@ Header merge  Vary "Origin"
     
     RewriteRule ^cuenta/restablecer/enviado$ index.php?web=password-restore-sended [NC,L]
     RewriteRule ^cuenta/restablecer$ index.php?web=password-request [NC,L]
-    RewriteRule ^restablecer$ index.php?web=password-restore [NC,L]
+    RewriteRule ^restablecer/(.*)$ index.php?web=password-restore&token=$1 [NC,L]
     RewriteRule ^cuenta/ajustes$ index.php?web=account-settings [NC,L]
     RewriteRule ^cuenta/pendiente$ index.php?web=ciudadania-aceptada [NC,L]
     RewriteRule ^cuenta/verificado$ index.php?web=ciudadania-verificada [NC,L]
