@@ -36,7 +36,7 @@ $token_time = round(microtime(true)/60/10);
 
 $restore_token_b = md5( md5($token_salt) . ($token_time+1) );
 $restore_token = md5( md5($token_salt) . ($token_time) );
-if( $request['token'] != $restore_token && $request['token'] != $restore_token_b ){
+if( $request['token'] != $restore_token || $request['token'] != $restore_token_b ){
     die( json_encode( array( "error" => "authentification_error", "requested-profile" => $request['email'], "message" => "Has superado el tiempo para restablecer la contraseña." ) ) );
 }
 
