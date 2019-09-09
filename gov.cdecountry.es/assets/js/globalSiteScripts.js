@@ -227,7 +227,7 @@ function event_profile_recover_restore(e){
     let userEmail = document.getElementById("email").value;
     let password = document.getElementById("password").value;
     let confirmPassword = document.getElementById("cpassword").value;
-    let tokenParam = document.querySelector("param[name='restore-token']");
+    let tokenParam = document.querySelector("param[name='restore-token']").value;
 
     if(password != confirmPassword){
         textMessage.classList.remove("d-none");
