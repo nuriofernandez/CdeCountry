@@ -25,7 +25,7 @@ $prepare->bindParam(":identificator", $request['email'], PDO::PARAM_STR, 400);
 $prepare->execute();
 
 // If the profile don't exist's response with error message
-if($prepare->rowCount() == 0) die( json_encode( array( "error" => "authentification_error", "requested-profile" => $request['identity'], "message" => "No se encontró la cuenta." ) ) );
+if($prepare->rowCount() == 0) die( json_encode( array( "error" => "authentification_error", "requested-profile" => $request['email'], "message" => "No se encontró la cuenta." ) ) );
 
 // Obtain user information from database
 $userdata = $prepare->fetch(PDO::FETCH_ASSOC);
